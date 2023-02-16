@@ -4,7 +4,7 @@ Date: 2023-02-17
 Title: Interact with Condor from R
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="arnim@spc.int"),
              person("Jemery", "Day", role="ctb", email="jemeryd@spc.int"))
-Imports: ssh
+Depends: ssh
 Description: Tools that support submitting, listing, and downloading Condor jobs
   from R.
 License: GPL-3
