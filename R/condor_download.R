@@ -14,6 +14,8 @@
 #' @seealso
 #' \code{\link{condor_submit}} submits a Condor job.
 #'
+#' \code{\link{condor_q}} lists the Condor job queue.
+#'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
 #' @examples

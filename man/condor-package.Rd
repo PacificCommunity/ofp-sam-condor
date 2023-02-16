@@ -12,6 +12,7 @@ Tools that support submitting, listing, and downloading Condor jobs from R.
 \emph{Condor jobs:}
 \tabular{ll}{
   \code{\link{condor_download}} \tab download\cr
+  \code{\link{condor_q}}        \tab list queue\cr
   \code{\link{condor_submit}}   \tab submit
 }
 }
