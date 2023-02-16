@@ -29,5 +29,7 @@ condor_download(session)  # after job has finished
 
 }
 \seealso{
+\code{\link{condor_download}} downloads results from a Condor job.
+
 \code{\link{condor-package}} gives an overview of the package.
 }

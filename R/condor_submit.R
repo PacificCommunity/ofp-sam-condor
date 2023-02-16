@@ -8,6 +8,8 @@
 #' @param remote.dir remote directory containing Condor job results.
 #'
 #' @seealso
+#' \code{\link{condor_download}} downloads results from a Condor job.
+#'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
 #' @examples
