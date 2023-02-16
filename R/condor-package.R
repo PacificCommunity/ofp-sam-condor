@@ -1,0 +1,21 @@
+#' @docType package
+#'
+#' @name condor-package
+#'
+#' @aliases condor
+#'
+#' @title Interact with Condor from R
+#'
+#' @description
+#' Tools that support submitting, listing, and downloading Condor jobs from R.
+#'
+#' @author Arni Magnusson with contributions by Jemery Day.
+#'
+#' @references
+#' \url{https://github.com/PacificCommunity/ofp-sam-condor}
+#'
+#' @seealso
+#' \pkg{condor} uses the \pkg{ssh} package to connect to the Condor submitter
+#' machine.
+
+NA
