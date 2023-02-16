@@ -1,0 +1,14 @@
+1.	LL DW 1N
+2.	LL DW 1C
+3.	LL DW 1S
+4.	LL AU 1
+5.	LL OTH 1
+6.	LL DW 2N
+7.	LL DW 2C_pre
+8.	LL DW 2C_post
+9.	LL DW 2S
+10.	LL NZ 2
+11.	LL EU 2
+12.	LL OTH 2N
+13. LL OTH 2C
+Summary
