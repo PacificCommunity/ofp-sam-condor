@@ -8,6 +8,12 @@
 \description{
 Tools that support submitting, listing, and downloading Condor jobs from R.
 }
+\details{
+\emph{Condor jobs:}
+\tabular{ll}{
+  \code{\link{condor_submit}}   \tab submit
+}
+}
 \references{
 \url{https://github.com/PacificCommunity/ofp-sam-condor}
 }
