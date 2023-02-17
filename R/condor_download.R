@@ -5,10 +5,9 @@
 #' @param remote.dir remote directory containing Condor job results.
 #' @param local.dir local directory to download to.
 #' @param pattern pattern identifying which result files to download.
-#' @param overwrite.local whether to overwrite local files if they already
-#'        exist.
-#' @param remove.remote whether to remove the remote directory after downloading
-#'        the result files.
+#' @param overwrite whether to overwrite local files if they already exist.
+#' @param remove whether to remove remote directory after downloading result
+#'        files.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -42,8 +41,7 @@
 
 condor_download <- function(remote.dir=basename(local.dir), local.dir=getwd(),
                             pattern="condor_mfcl|End.tar.gz",
-                            overwrite.local=FALSE, remove.remote=TRUE,
-                            session=NULL)
+                            overwrite=FALSE, remove=TRUE, session=NULL)
 {
   # Look for user session
   if(is.null(session))
@@ -61,16 +59,16 @@ condor_download <- function(remote.dir=basename(local.dir), local.dir=getwd(),
   # Confirm that End.tar.gz does not already exist in local.dir
   if("End.tar.gz" %in% dir(local.dir))
   {
-    if(overwrite.local)
+    if(overwrite)
       warning("overwriting End.tar.gz")
     else
-      stop("End.tar.gz already exists - consider overwrite.local=TRUE")
+      stop("End.tar.gz already exists - consider overwrite=TRUE")
   }
 
   # Download files and optionally remove remote.dir
   sapply(file.path(remote.dir, files), scp_download, session=session,
          to=local.dir)
-  if(remove.remote)
+  if(remove)
   {
     ssh_exec_wait(session, paste("cd", remote.dir, ";", "cd ..;",
                                  "rm -rf", basename(remote.dir)))

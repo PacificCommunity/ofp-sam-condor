@@ -5,8 +5,8 @@
 \title{Condor Download}
 \usage{
 condor_download(remote.dir = basename(local.dir), local.dir = getwd(),
-  pattern = "condor_mfcl|End.tar.gz", overwrite.local = FALSE,
-  remove.remote = TRUE, session = NULL)
+  pattern = "condor_mfcl|End.tar.gz", overwrite = FALSE, remove = TRUE,
+  session = NULL)
 }
 \arguments{
 \item{remote.dir}{remote directory containing Condor job results.}
@@ -15,11 +15,10 @@ condor_download(remote.dir = basename(local.dir), local.dir = getwd(),
 
 \item{pattern}{pattern identifying which result files to download.}
 
-\item{overwrite.local}{whether to overwrite local files if they already
-exist.}
+\item{overwrite}{whether to overwrite local files if they already exist.}
 
-\item{remove.remote}{whether to remove the remote directory after downloading
-the result files.}
+\item{remove}{whether to remove remote directory after downloading result
+files.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
