@@ -2,10 +2,15 @@
 #'
 #' Submit a Condor job.
 #'
-#' @param session created by \code{ssh_connect}.
 #' @param local.dir local directory containing \code{condor.sub} and any other
 #'        files necessary to run the job.
 #' @param remote.dir remote directory containing Condor job results.
+#' @param session optional object of class \code{ssh_connect}.
+#'
+#' @details
+#' When the default value of \code{session = NULL} is used, the function looks
+#' for a \code{session} object in the user workspace. This allows the user to
+#' run Condor functions without explicitly specifying the \code{session}.
 #'
 #' @seealso
 #' \code{\link{condor_q}} lists the Condor job queue.
@@ -30,8 +35,12 @@
 #'
 #' @export
 
-condor_submit <- function(session, local.dir=".", remote.dir="condor_run")
+condor_submit <- function(local.dir=".", remote.dir="condor_run", session=NULL)
 {
+  # Look for user session
+  if(is.null(session))
+    session <- get("session", pos=.GlobalEnv, inherits=FALSE)
+
   # Confirm that local.dir contains condor.sub
   if(!("condor.sub" %in% dir(local.dir)))
     stop("condor.sub not found - please check 'local.dir'")

@@ -4,13 +4,18 @@
 \alias{condor_q}
 \title{Condor Queue}
 \usage{
-condor_q(session)
+condor_q(session = NULL)
 }
 \arguments{
-\item{session}{created by \code{ssh_connect}.}
+\item{session}{optional object of class \code{ssh_connect}.}
 }
 \description{
 List the Condor job queue.
+}
+\details{
+When the default value of \code{session = NULL} is used, the function looks
+for a \code{session} object in the user workspace. This allows the user to
+run Condor functions without explicitly specifying the \code{session}.
 }
 \examples{
 \dontrun{

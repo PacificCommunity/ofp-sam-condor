@@ -2,7 +2,6 @@
 #'
 #' Download results from a Condor job.
 #'
-#' @param session created by \code{ssh_connect}.
 #' @param local.dir local directory to download to.
 #' @param remote.dir remote directory containing Condor job results.
 #' @param pattern pattern identifying which result files to download.
@@ -10,6 +9,12 @@
 #'        exist.
 #' @param remove.remote whether to remove the remote directory after downloading
 #'        the result files.
+#' @param session optional object of class \code{ssh_connect}.
+#'
+#' @details
+#' When the default value of \code{session = NULL} is used, the function looks
+#' for a \code{session} object in the user workspace. This allows the user to
+#' run Condor functions without explicitly specifying the \code{session}.
 #'
 #' @seealso
 #' \code{\link{condor_submit}} submits a Condor job.
@@ -32,10 +37,15 @@
 #'
 #' @export
 
-condor_download <- function(session, local.dir=".", remote.dir="condor_run",
+condor_download <- function(local.dir=".", remote.dir="condor_run",
                             pattern="condor_mfcl|End.tar.gz",
-                            overwrite.local=FALSE, remove.remote=TRUE)
+                            overwrite.local=FALSE, remove.remote=TRUE,
+                            session=NULL)
 {
+  # Look for user session
+  if(is.null(session))
+    session <- get("session", pos=.GlobalEnv, inherits=FALSE)
+
   # Confirm that user is downloading a single remote.dir
   if(length(remote.dir) > 1)
     stop("only one 'remote.dir' can be downloaded at a time")

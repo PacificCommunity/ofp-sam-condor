@@ -4,18 +4,23 @@
 \alias{condor_submit}
 \title{Condor Submit}
 \usage{
-condor_submit(session, local.dir = ".", remote.dir = "condor_run")
+condor_submit(local.dir = ".", remote.dir = "condor_run", session = NULL)
 }
 \arguments{
-\item{session}{created by \code{ssh_connect}.}
-
 \item{local.dir}{local directory containing \code{condor.sub} and any other
 files necessary to run the job.}
 
 \item{remote.dir}{remote directory containing Condor job results.}
+
+\item{session}{optional object of class \code{ssh_connect}.}
 }
 \description{
 Submit a Condor job.
+}
+\details{
+When the default value of \code{session = NULL} is used, the function looks
+for a \code{session} object in the user workspace. This allows the user to
+run Condor functions without explicitly specifying the \code{session}.
 }
 \examples{
 \dontrun{

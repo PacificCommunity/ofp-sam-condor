@@ -4,13 +4,11 @@
 \alias{condor_download}
 \title{Condor Download}
 \usage{
-condor_download(session, local.dir = ".", remote.dir = "condor_run",
+condor_download(local.dir = ".", remote.dir = "condor_run",
   pattern = "condor_mfcl|End.tar.gz", overwrite.local = FALSE,
-  remove.remote = TRUE)
+  remove.remote = TRUE, session = NULL)
 }
 \arguments{
-\item{session}{created by \code{ssh_connect}.}
-
 \item{local.dir}{local directory to download to.}
 
 \item{remote.dir}{remote directory containing Condor job results.}
@@ -22,9 +20,16 @@ exist.}
 
 \item{remove.remote}{whether to remove the remote directory after downloading
 the result files.}
+
+\item{session}{optional object of class \code{ssh_connect}.}
 }
 \description{
 Download results from a Condor job.
+}
+\details{
+When the default value of \code{session = NULL} is used, the function looks
+for a \code{session} object in the user workspace. This allows the user to
+run Condor functions without explicitly specifying the \code{session}.
 }
 \examples{
 \dontrun{
