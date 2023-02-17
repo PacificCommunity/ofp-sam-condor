@@ -13,9 +13,9 @@ condor_q(session = NULL)
 List the Condor job queue.
 }
 \details{
-When the default value of \code{session = NULL} is used, the function looks
-for a \code{session} object in the user workspace. This allows the user to
-run Condor functions without explicitly specifying the \code{session}.
+The default value of \code{session = NULL} looks for a \code{session} object
+in the user workspace. This allows the user to run Condor functions without
+explicitly specifying the \code{session}.
 }
 \examples{
 \dontrun{

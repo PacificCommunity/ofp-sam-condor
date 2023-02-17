@@ -8,9 +8,12 @@
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
-#' When the default value of \code{session = NULL} is used, the function looks
-#' for a \code{session} object in the user workspace. This allows the user to
-#' run Condor functions without explicitly specifying the \code{session}.
+#' The default value of \code{remote.dir} uses the same directory name as
+#' \code{local.dir}.
+#'
+#' The default value of \code{session = NULL} looks for a \code{session} object
+#' in the user workspace. This allows the user to run Condor functions without
+#' explicitly specifying the \code{session}.
 #'
 #' @seealso
 #' \code{\link{condor_q}} lists the Condor job queue.
@@ -35,7 +38,8 @@
 #'
 #' @export
 
-condor_submit <- function(remote.dir="condor_run", local.dir=".", session=NULL)
+condor_submit <- function(remote.dir=basename(local.dir), local.dir=getwd(),
+                          session=NULL)
 {
   # Look for user session
   if(is.null(session))
