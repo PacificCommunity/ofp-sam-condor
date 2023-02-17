@@ -1,5 +1,5 @@
 universe = vanilla
-executable = condor_wrapper.sh
+executable = condor_run.sh
 error = $(Cluster).$(Process).condor_mfcl.err
 log = $(Cluster).$(Process).condor_mfcl.log
 output = $(Cluster).$(Process).condor_mfcl.out
