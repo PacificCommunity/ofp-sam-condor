@@ -28,9 +28,9 @@
 #' library(ssh)
 #' session <- ssh_connect("NOUOFPCALC02")
 #'
-#' condor_submit(session)
-#' condor_q(session)
-#' condor_download(session)  # after job has finished
+#' condor_submit()
+#' condor_q()
+#' condor_download()  # after job has finished
 #' }
 #'
 #' @importFrom ssh scp_download ssh_exec_internal ssh_exec_wait
