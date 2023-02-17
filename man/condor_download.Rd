@@ -4,14 +4,14 @@
 \alias{condor_download}
 \title{Condor Download}
 \usage{
-condor_download(local.dir = ".", remote.dir = "condor_run",
+condor_download(remote.dir = "condor_run", local.dir = ".",
   pattern = "condor_mfcl|End.tar.gz", overwrite.local = FALSE,
   remove.remote = TRUE, session = NULL)
 }
 \arguments{
-\item{local.dir}{local directory to download to.}
-
 \item{remote.dir}{remote directory containing Condor job results.}
+
+\item{local.dir}{local directory to download to.}
 
 \item{pattern}{pattern identifying which result files to download.}
 

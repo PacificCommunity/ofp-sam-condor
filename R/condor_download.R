@@ -2,8 +2,8 @@
 #'
 #' Download results from a Condor job.
 #'
-#' @param local.dir local directory to download to.
 #' @param remote.dir remote directory containing Condor job results.
+#' @param local.dir local directory to download to.
 #' @param pattern pattern identifying which result files to download.
 #' @param overwrite.local whether to overwrite local files if they already
 #'        exist.
@@ -37,7 +37,7 @@
 #'
 #' @export
 
-condor_download <- function(local.dir=".", remote.dir="condor_run",
+condor_download <- function(remote.dir="condor_run", local.dir=".",
                             pattern="condor_mfcl|End.tar.gz",
                             overwrite.local=FALSE, remove.remote=TRUE,
                             session=NULL)

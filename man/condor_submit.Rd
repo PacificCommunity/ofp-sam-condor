@@ -4,13 +4,13 @@
 \alias{condor_submit}
 \title{Condor Submit}
 \usage{
-condor_submit(local.dir = ".", remote.dir = "condor_run", session = NULL)
+condor_submit(remote.dir = "condor_run", local.dir = ".", session = NULL)
 }
 \arguments{
+\item{remote.dir}{remote directory where Condor job should run.}
+
 \item{local.dir}{local directory containing \code{condor.sub} and any other
 files necessary to run the job.}
-
-\item{remote.dir}{remote directory containing Condor job results.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }

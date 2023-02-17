@@ -2,9 +2,9 @@
 #'
 #' Submit a Condor job.
 #'
+#' @param remote.dir remote directory where Condor job should run.
 #' @param local.dir local directory containing \code{condor.sub} and any other
 #'        files necessary to run the job.
-#' @param remote.dir remote directory containing Condor job results.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -35,7 +35,7 @@
 #'
 #' @export
 
-condor_submit <- function(local.dir=".", remote.dir="condor_run", session=NULL)
+condor_submit <- function(remote.dir="condor_run", local.dir=".", session=NULL)
 {
   # Look for user session
   if(is.null(session))
