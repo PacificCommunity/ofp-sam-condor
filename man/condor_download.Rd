@@ -6,7 +6,7 @@
 \usage{
 condor_download(remote.dir = basename(local.dir), local.dir = getwd(),
   pattern = "condor_mfcl|End.tar.gz", overwrite = FALSE, remove = TRUE,
-  session = NULL)
+  untar.end = TRUE, session = NULL)
 }
 \arguments{
 \item{remote.dir}{remote directory containing Condor job results.}
@@ -19,6 +19,10 @@ condor_download(remote.dir = basename(local.dir), local.dir = getwd(),
 
 \item{remove}{whether to remove remote directory after downloading result
 files.}
+
+\item{untar.end}{whether to extract \code{End.tar.gz} into
+\emph{local.dir}\code{/End}. (Ignored if a file named
+\file{End.tar.gz} was not downloaded.)}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }

@@ -8,6 +8,9 @@
 #' @param overwrite whether to overwrite local files if they already exist.
 #' @param remove whether to remove remote directory after downloading result
 #'        files.
+#' @param untar.end whether to extract \code{End.tar.gz} into
+#'        \emph{local.dir}\code{/End}. (Ignored if a file named
+#'        \file{End.tar.gz} was not downloaded.)
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -36,12 +39,13 @@
 #' }
 #'
 #' @importFrom ssh scp_download ssh_exec_internal ssh_exec_wait
+#' @importFrom utils untar
 #'
 #' @export
 
 condor_download <- function(remote.dir=basename(local.dir), local.dir=getwd(),
-                            pattern="condor_mfcl|End.tar.gz",
-                            overwrite=FALSE, remove=TRUE, session=NULL)
+                            pattern="condor_mfcl|End.tar.gz", overwrite=FALSE,
+                            remove=TRUE, untar.end=TRUE, session=NULL)
 {
   # Look for user session
   if(is.null(session))
@@ -71,9 +75,13 @@ condor_download <- function(remote.dir=basename(local.dir), local.dir=getwd(),
     }
   }
 
-  # Download files and optionally remove remote.dir
+  # Download files and untar End.tar.gz
   sapply(file.path(remote.dir, files), scp_download, session=session,
          to=local.dir)
+  if(untar.end && file.exists(file.path(local.dir, "End.tar.gz")))
+    untar(file.path(local.dir, "End.tar.gz"), exdir=file.path(local.dir, "End"))
+
+  # Remove remote.dir
   if(remove)
   {
     ssh_exec_wait(session, paste("cd", remote.dir, ";", "cd ..;",
