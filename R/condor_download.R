@@ -61,13 +61,14 @@ condor_download <- function(remote.dir=basename(local.dir), local.dir=getwd(),
   files <- unlist(strsplit(rawToChar(files$stdout), "\\n"))
   files <- grep("condor_mfcl|End.tar.gz", files, value=TRUE)
 
-  # Confirm that End.tar.gz does not already exist in local.dir
-  if("End.tar.gz" %in% dir(local.dir))
+  # Confirm that files do not already exist in local.dir
+  if(!overwrite)
   {
-    if(overwrite)
-      warning("overwriting End.tar.gz")
-    else
-      stop("End.tar.gz already exists - consider overwrite=TRUE")
+    for(f in files)
+    {
+      if(f %in% dir(local.dir))
+        stop(f, " already exists in local.dir - consider overwrite=TRUE")
+    }
   }
 
   # Download files and optionally remove remote.dir
