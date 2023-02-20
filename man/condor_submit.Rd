@@ -10,8 +10,8 @@ condor_submit(remote.dir = basename(local.dir), local.dir = getwd(),
 \arguments{
 \item{remote.dir}{remote directory where Condor job should run.}
 
-\item{local.dir}{local directory containing \code{condor.sub} and any other
-files necessary to run the job.}
+\item{local.dir}{local directory containing a Condor \code{*.sub} file and
+any other files necessary to run the job.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }

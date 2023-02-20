@@ -3,8 +3,8 @@
 #' Submit a Condor job.
 #'
 #' @param remote.dir remote directory where Condor job should run.
-#' @param local.dir local directory containing \code{condor.sub} and any other
-#'        files necessary to run the job.
+#' @param local.dir local directory containing a Condor \code{*.sub} file and
+#'        any other files necessary to run the job.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -45,9 +45,10 @@ condor_submit <- function(remote.dir=basename(local.dir), local.dir=getwd(),
   if(is.null(session))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
-  # Confirm that local.dir contains condor.sub
-  if(!("condor.sub" %in% dir(local.dir)))
-    stop("condor.sub not found - please check 'local.dir'")
+  # Confirm that local.dir contains one *.sub
+  subfile <- dir(local.dir, pattern="\\.sub$")
+  if(length(subfile) != 1)
+    stop("'local.dir' must contain one *.sub file")
 
   # Confirm that Condor submitter does not already contain remote.dir
   already <- ssh_exec_internal(session, paste("ls", remote.dir), error=FALSE)
@@ -67,7 +68,7 @@ condor_submit <- function(remote.dir=basename(local.dir), local.dir=getwd(),
   file.remove("Start.tar.gz")
   cmd <- paste("cd", remote.dir, ";",
                "tar -xzf Start.tar.gz;",
-               "condor_submit condor.sub")
+               "condor_submit", subfile)
   output <- ssh_exec_internal(session, cmd)
 
   # Extract and format job.id
