@@ -5,6 +5,8 @@
 #' @param remote.dir remote directory where Condor job should run.
 #' @param local.dir local directory containing a Condor \code{*.sub} file and
 #'        any other files necessary to run the job.
+#' @param exclude pattern identifying files that should not be submitted to
+#'        Condor.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -39,7 +41,7 @@
 #' @export
 
 condor_submit <- function(remote.dir=basename(local.dir), local.dir=getwd(),
-                          session=NULL)
+                          exclude="condor_mfcl|tar.gz", session=NULL)
 {
   # Look for user session
   if(is.null(session))
@@ -57,7 +59,7 @@ condor_submit <- function(remote.dir=basename(local.dir), local.dir=getwd(),
 
   # Create Start.tar.gz in local.dir (excluding existing tar.gz files)
   files <- dir(local.dir, full.names=TRUE)
-  files <- grep("tar.gz$", files, invert=TRUE, value=TRUE)
+  files <- grep(exclude, files, invert=TRUE, value=TRUE)
   owd <- setwd(local.dir)
   tar("Start.tar.gz", basename(files), compression="gzip")
   setwd(owd)
