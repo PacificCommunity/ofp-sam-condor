@@ -2,9 +2,9 @@
 #'
 #' Submit a Condor job.
 #'
-#' @param remote.dir remote directory where Condor job should run.
 #' @param local.dir local directory containing a Condor \code{*.sub} file and
 #'        any other files necessary to run the job.
+#' @param remote.dir remote directory where Condor job should run.
 #' @param exclude pattern identifying files that should not be submitted to
 #'        Condor.
 #' @param session optional object of class \code{ssh_connect}.
@@ -40,7 +40,7 @@
 #'
 #' @export
 
-condor_submit <- function(remote.dir=basename(local.dir), local.dir=getwd(),
+condor_submit <- function(local.dir=getwd(), remote.dir=basename(local.dir),
                           exclude="condor_mfcl|tar.gz|End", session=NULL)
 {
   # Look for user session

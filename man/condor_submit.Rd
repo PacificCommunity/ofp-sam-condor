@@ -4,14 +4,14 @@
 \alias{condor_submit}
 \title{Condor Submit}
 \usage{
-condor_submit(remote.dir = basename(local.dir), local.dir = getwd(),
+condor_submit(local.dir = getwd(), remote.dir = basename(local.dir),
   exclude = "condor_mfcl|tar.gz|End", session = NULL)
 }
 \arguments{
-\item{remote.dir}{remote directory where Condor job should run.}
-
 \item{local.dir}{local directory containing a Condor \code{*.sub} file and
 any other files necessary to run the job.}
+
+\item{remote.dir}{remote directory where Condor job should run.}
 
 \item{exclude}{pattern identifying files that should not be submitted to
 Condor.}
