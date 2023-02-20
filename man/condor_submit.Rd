@@ -5,7 +5,7 @@
 \title{Condor Submit}
 \usage{
 condor_submit(remote.dir = basename(local.dir), local.dir = getwd(),
-  exclude = "condor_mfcl|tar.gz", session = NULL)
+  exclude = "condor_mfcl|tar.gz|End", session = NULL)
 }
 \arguments{
 \item{remote.dir}{remote directory where Condor job should run.}

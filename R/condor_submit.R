@@ -41,7 +41,7 @@
 #' @export
 
 condor_submit <- function(remote.dir=basename(local.dir), local.dir=getwd(),
-                          exclude="condor_mfcl|tar.gz", session=NULL)
+                          exclude="condor_mfcl|tar.gz|End", session=NULL)
 {
   # Look for user session
   if(is.null(session))
