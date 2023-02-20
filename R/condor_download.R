@@ -51,6 +51,11 @@ condor_download <- function(remote.dir=basename(local.dir), local.dir=getwd(),
   if(length(remote.dir) > 1)
     stop("only one 'remote.dir' can be downloaded at a time")
 
+  # Confirm that remote.dir exists
+  rd.exists <- ssh_exec_internal(session, paste("cd", remote.dir), error=FALSE)
+  if(rd.exists$status > 0)
+    stop("directory '", remote.dir, "' not found on Condor submitter")
+
   # Look for files matching pattern
   files <- ssh_exec_internal(session, paste("cd", remote.dir, "; ls"))
   files <- unlist(strsplit(rawToChar(files$stdout), "\\n"))
