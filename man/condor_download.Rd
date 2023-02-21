@@ -55,5 +55,7 @@ condor_download()  # after job has finished
 
 \code{\link{condor_q}} lists the Condor job queue.
 
+\code{\link{condor_dir}} lists Condor directories.
+
 \code{\link{condor-package}} gives an overview of the package.
 }

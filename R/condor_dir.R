@@ -1,7 +1,9 @@
-#' Condor Queue
+#' Condor Directories
 #'
-#' List the Condor job queue.
+#' List directories on Condor submitter machine.
 #'
+#' @param path top directory on submitter machine that contains Condor run
+#'        directories.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -12,7 +14,7 @@
 #' @seealso
 #' \code{\link{condor_submit}} submits a Condor job.
 #'
-#' \code{\link{condor_dir}} lists Condor directories.
+#' \code{\link{condor_q}} lists the Condor job queue.
 #'
 #' \code{\link{condor_download}} downloads results from a Condor job.
 #'
@@ -23,20 +25,28 @@
 #' library(ssh)
 #' session <- ssh_connect("NOUOFPCALC02")
 #'
-#' condor_submit()
-#' condor_q()
-#' condor_download()  # after job has finished
+#' condor_dir()
 #' }
 #'
-#' @importFrom ssh ssh_exec_wait
+#' @importFrom ssh ssh_exec_internal
 #'
 #' @export
 
-condor_q <- function(session=NULL)
+condor_dir <- function(path="condor", session=NULL)
 {
   # Look for user session
   if(is.null(session))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
-  ssh_exec_wait(session, "condor_q")
+  # Confirm that path exists
+  rd.exists <- ssh_exec_internal(session, paste("cd", path), error=FALSE)
+  if(rd.exists$status > 0)
+    stop("directory '", path, "' not found on Condor submitter")
+
+
+  cmd <- paste("cd", path, ";", "ls -d */")  # dirs only
+  dirs <- ssh_exec_internal(session, cmd)$stdout
+  dirs <- unlist(strsplit(rawToChar(dirs), "\\n"))
+  dirs <- sub("/", "", dirs)
+  dirs
 }
