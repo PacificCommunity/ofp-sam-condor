@@ -17,6 +17,10 @@
 #'   \code{\link{condor_dir}}      \tab list directories\cr
 #'   \code{\link{condor_submit}}   \tab submit
 #' }
+#' \emph{Utilities:}
+#' \tabular{ll}{
+#'   \code{\link{ssh_exec_stdout}} \tab execute command
+#' }
 #'
 #' @author Arni Magnusson with contributions by Jemery Day.
 #'

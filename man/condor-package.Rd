@@ -16,6 +16,10 @@ Tools that support submitting, listing, and downloading Condor jobs from R.
   \code{\link{condor_dir}}      \tab list directories\cr
   \code{\link{condor_submit}}   \tab submit
 }
+\emph{Utilities:}
+\tabular{ll}{
+  \code{\link{ssh_exec_stdout}} \tab execute command
+}
 }
 \references{
 \url{https://github.com/PacificCommunity/ofp-sam-condor}
