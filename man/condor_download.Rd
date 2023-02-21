@@ -4,7 +4,7 @@
 \alias{condor_download}
 \title{Condor Download}
 \usage{
-condor_download(remote.dir = basename(local.dir), local.dir = ".",
+condor_download(remote.dir = NULL, local.dir = ".",
   pattern = "condor_mfcl|End.tar.gz", overwrite = FALSE, remove = TRUE,
   untar.end = TRUE, session = NULL)
 }
@@ -30,8 +30,10 @@ files.}
 Download results from a Condor job.
 }
 \details{
-The default value of \code{remote.dir} uses the same directory name as
-\code{local.dir}.
+The default value of \code{remote.dir = NULL} looks for Condor job results in
+\code{condor/}\emph{local.dir}. For example, if
+\code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
+\code{"condor/run01"}.
 
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without

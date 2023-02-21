@@ -10,8 +10,10 @@
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
-#' The default value of \code{remote.dir} uses the same directory name as
-#' \code{local.dir}.
+#' The default value of \code{remote.dir = NULL} runs the Condor job in
+#' \code{condor/}\emph{local.dir}. For example, if
+#' \code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
+#' \code{"condor/run01"}.
 #'
 #' The default value of \code{session = NULL} looks for a \code{session} object
 #' in the user workspace. This allows the user to run Condor functions without
@@ -40,12 +42,16 @@
 #'
 #' @export
 
-condor_submit <- function(local.dir=".", remote.dir=basename(local.dir),
+condor_submit <- function(local.dir=".", remote.dir=NULL,
                           exclude="condor_mfcl|tar.gz|End", session=NULL)
 {
   # Expand dot so basename() works
   if(local.dir == ".")
     local.dir <- getwd()
+
+  # Default remote.dir
+  if(is.null(remote.dir))
+    remote.dir <- file.path("condor", basename(local.dir))
 
   # Look for user session
   if(is.null(session))

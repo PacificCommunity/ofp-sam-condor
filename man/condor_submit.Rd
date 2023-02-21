@@ -4,7 +4,7 @@
 \alias{condor_submit}
 \title{Condor Submit}
 \usage{
-condor_submit(local.dir = ".", remote.dir = basename(local.dir),
+condor_submit(local.dir = ".", remote.dir = NULL,
   exclude = "condor_mfcl|tar.gz|End", session = NULL)
 }
 \arguments{
@@ -22,8 +22,10 @@ Condor.}
 Submit a Condor job.
 }
 \details{
-The default value of \code{remote.dir} uses the same directory name as
-\code{local.dir}.
+The default value of \code{remote.dir = NULL} runs the Condor job in
+\code{condor/}\emph{local.dir}. For example, if
+\code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
+\code{"condor/run01"}.
 
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without
