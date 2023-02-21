@@ -2,7 +2,7 @@
 #'
 #' List directories on Condor submitter machine.
 #'
-#' @param topdir top directory on submitter machine that contains Condor run
+#' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
 #' @param session optional object of class \code{ssh_connect}.
 #'
@@ -32,19 +32,19 @@
 #'
 #' @export
 
-condor_dir <- function(topdir="condor", session=NULL)
+condor_dir <- function(top.dir="condor", session=NULL)
 {
   # Look for user session
   if(is.null(session))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
-  # Confirm that topdir exists
-  rd.exists <- ssh_exec_internal(session, paste("cd", topdir), error=FALSE)
+  # Confirm that top.dir exists
+  rd.exists <- ssh_exec_internal(session, paste("cd", top.dir), error=FALSE)
   if(rd.exists$status > 0)
-    stop("directory '", topdir, "' not found on Condor submitter")
+    stop("directory '", top.dir, "' not found on Condor submitter")
 
 
-  cmd <- paste("cd", topdir, ";", "ls -d */")  # dirs only
+  cmd <- paste("cd", top.dir, ";", "ls -d */")  # dirs only
   dirs <- ssh_exec_internal(session, cmd)$stdout
   dirs <- unlist(strsplit(rawToChar(dirs), "\\n"))
   dirs <- sub("/", "", dirs)

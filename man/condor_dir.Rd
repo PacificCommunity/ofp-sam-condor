@@ -4,10 +4,10 @@
 \alias{condor_dir}
 \title{Condor Directories}
 \usage{
-condor_dir(topdir = "condor", session = NULL)
+condor_dir(top.dir = "condor", session = NULL)
 }
 \arguments{
-\item{topdir}{top directory on submitter machine that contains Condor run
+\item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
