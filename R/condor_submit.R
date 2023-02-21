@@ -85,9 +85,9 @@ condor_submit <- function(local.dir=".", remote.dir=NULL,
   cmd <- paste("cd", remote.dir, ";",
                "tar -xzf Start.tar.gz;",
                "condor_submit", subfile)
-  stdout <- ssh_exec_stdout(cmd)
+  stdout <- tail(ssh_exec_stdout(cmd), 1)  # final line includes job id
 
-  # Extract and format job.id
+  # Extract and format job information
   job <- as.integer(gsub(".*?([0-9][0-9]+).*", "\\1", stdout))
   job <- setNames(basename(remote.dir), job)
 
