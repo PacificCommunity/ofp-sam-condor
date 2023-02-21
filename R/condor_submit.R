@@ -19,6 +19,8 @@
 #' in the user workspace. This allows the user to run Condor functions without
 #' explicitly specifying the \code{session}.
 #'
+#' @return Remote directory name with the job id as a name attribute.
+#'
 #' @seealso
 #' \code{\link{condor_q}} lists the Condor job queue.
 #'
@@ -84,9 +86,9 @@ condor_submit <- function(local.dir=".", remote.dir=NULL,
   output <- ssh_exec_internal(session, cmd)
 
   # Extract and format job.id
-  job.id <- rawToChar(output$stdout)
-  job.id <- as.integer(gsub(".*?([0-9][0-9]+).*", "\\1", job.id))
-  job.id <- setNames(job.id, remote.dir)
+  job <- rawToChar(output$stdout)
+  job <- as.integer(gsub(".*?([0-9][0-9]+).*", "\\1", job))
+  job <- setNames(basename(remote.dir), job)
 
-  job.id
+  job
 }

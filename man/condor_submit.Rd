@@ -18,6 +18,9 @@ Condor.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
+\value{
+Remote directory name with the job id as a name attribute.
+}
 \description{
 Submit a Condor job.
 }
