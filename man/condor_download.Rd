@@ -4,7 +4,7 @@
 \alias{condor_download}
 \title{Condor Download}
 \usage{
-condor_download(remote.dir = basename(local.dir), local.dir = getwd(),
+condor_download(remote.dir = basename(local.dir), local.dir = ".",
   pattern = "condor_mfcl|End.tar.gz", overwrite = FALSE, remove = TRUE,
   untar.end = TRUE, session = NULL)
 }

@@ -4,7 +4,7 @@
 \alias{condor_submit}
 \title{Condor Submit}
 \usage{
-condor_submit(local.dir = getwd(), remote.dir = basename(local.dir),
+condor_submit(local.dir = ".", remote.dir = basename(local.dir),
   exclude = "condor_mfcl|tar.gz|End", session = NULL)
 }
 \arguments{

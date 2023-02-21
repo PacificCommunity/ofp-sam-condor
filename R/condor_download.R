@@ -43,10 +43,14 @@
 #'
 #' @export
 
-condor_download <- function(remote.dir=basename(local.dir), local.dir=getwd(),
+condor_download <- function(remote.dir=basename(local.dir), local.dir=".",
                             pattern="condor_mfcl|End.tar.gz", overwrite=FALSE,
                             remove=TRUE, untar.end=TRUE, session=NULL)
 {
+  # Expand dot so basename() works
+  if(local.dir == ".")
+    local.dir <- getwd()
+
   # Look for user session
   if(is.null(session))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)

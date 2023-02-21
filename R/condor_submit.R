@@ -40,9 +40,13 @@
 #'
 #' @export
 
-condor_submit <- function(local.dir=getwd(), remote.dir=basename(local.dir),
+condor_submit <- function(local.dir=".", remote.dir=basename(local.dir),
                           exclude="condor_mfcl|tar.gz|End", session=NULL)
 {
+  # Expand dot so basename() works
+  if(local.dir == ".")
+    local.dir <- getwd()
+
   # Look for user session
   if(is.null(session))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
