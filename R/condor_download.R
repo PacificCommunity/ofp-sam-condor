@@ -73,8 +73,7 @@ condor_download <- function(remote.dir=NULL, local.dir=".",
     stop("directory '", remote.dir, "' not found on Condor submitter")
 
   # Look for files matching pattern
-  files <- ssh_exec_internal(session, paste("cd", remote.dir, "; ls"))
-  files <- unlist(strsplit(rawToChar(files$stdout), "\\n"))
+  files <- ssh_exec_stdout(paste("cd", remote.dir, "; ls"))
   files <- grep("condor_mfcl|End.tar.gz", files, value=TRUE)
 
   # Confirm that files do not already exist in local.dir

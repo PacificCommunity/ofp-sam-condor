@@ -45,8 +45,7 @@ condor_dir <- function(top.dir="condor", session=NULL)
 
 
   cmd <- paste("cd", top.dir, ";", "ls -d */")  # dirs only
-  dirs <- ssh_exec_internal(session, cmd)$stdout
-  dirs <- unlist(strsplit(rawToChar(dirs), "\\n"))
+  dirs <- ssh_exec_stdout(cmd)
   dirs <- sub("/", "", dirs)
   dirs
 }
