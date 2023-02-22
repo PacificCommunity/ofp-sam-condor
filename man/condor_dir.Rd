@@ -12,8 +12,11 @@ directories.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
+\value{
+\code{character} vector of directory names.
+}
 \description{
-List directories on Condor submitter machine.
+List directories on Condor submitter.
 }
 \details{
 The default value of \code{session = NULL} looks for a \code{session} object

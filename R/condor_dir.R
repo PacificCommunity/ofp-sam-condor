@@ -1,6 +1,6 @@
 #' Condor Directories
 #'
-#' List directories on Condor submitter machine.
+#' List directories on Condor submitter.
 #'
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
@@ -10,6 +10,8 @@
 #' The default value of \code{session = NULL} looks for a \code{session} object
 #' in the user workspace. This allows the user to run Condor functions without
 #' explicitly specifying the \code{session}.
+#'
+#' @return \code{character} vector of directory names.
 #'
 #' @seealso
 #' \code{\link{condor_submit}} submits a Condor job.
