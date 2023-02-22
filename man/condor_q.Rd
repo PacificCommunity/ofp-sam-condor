@@ -24,6 +24,7 @@ session <- ssh_connect("NOUOFPCALC02")
 
 condor_submit()
 condor_q()
+condor_dir()
 condor_download()  # after job has finished
 }
 

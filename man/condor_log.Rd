@@ -17,11 +17,11 @@ directories.}
 \value{
 Log file contents as an object of class \code{condor_log}.
 
-The \code{condor_log} class is simply a \code{character} vector with a
+The \code{condor_log} class is simply a \code{"character"} vector with a
 \code{print.condor_log} method.
 }
 \description{
-View log file inside a run directory on Condor submitter.
+Show Condor log file from a run directory on submitter machine.
 }
 \details{
 The default value of \code{session = NULL} looks for a \code{session} object
@@ -33,7 +33,16 @@ explicitly specifying the \code{session}.
 library(ssh)
 session <- ssh_connect("NOUOFPCALC02")
 
+condor_dir()
 condor_log()
+summary(condor_log())
 }
 
+}
+\seealso{
+\code{\link{summary.condor_log}} shows Condor log file summary.
+
+\code{\link{condor_dir}} lists Condor directories.
+
+\code{\link{condor-package}} gives an overview of the package.
 }

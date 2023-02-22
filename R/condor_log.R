@@ -1,6 +1,6 @@
 #' Condor Log
 #'
-#' View log file inside a run directory on Condor submitter.
+#' Show Condor log file from a run directory on submitter machine.
 #'
 #' @param run.dir name of a Condor run directory inside \code{top.dir}.
 #' @param top.dir top directory on submitter machine that contains Condor run
@@ -15,15 +15,24 @@
 #' @return
 #' Log file contents as an object of class \code{condor_log}.
 #'
-#' The \code{condor_log} class is simply a \code{character} vector with a
+#' The \code{condor_log} class is simply a \code{"character"} vector with a
 #' \code{print.condor_log} method.
+#'
+#' @seealso
+#' \code{\link{summary.condor_log}} shows Condor log file summary.
+#'
+#' \code{\link{condor_dir}} lists Condor directories.
+#'
+#' \code{\link{condor-package}} gives an overview of the package.
 #'
 #' @examples
 #' \dontrun{
 #' library(ssh)
 #' session <- ssh_connect("NOUOFPCALC02")
 #'
+#' condor_dir()
 #' condor_log()
+#' summary(condor_log())
 #' }
 #'
 #' @importFrom ssh ssh_exec_internal

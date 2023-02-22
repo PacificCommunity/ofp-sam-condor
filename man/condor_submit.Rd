@@ -41,15 +41,13 @@ session <- ssh_connect("NOUOFPCALC02")
 
 condor_submit()
 condor_q()
+condor_dir()
 condor_download()  # after job has finished
 }
 
 }
 \seealso{
-\code{\link{condor_q}} lists the Condor job queue.
-
-\code{\link{condor_dir}} lists Condor directories.
-
+\code{condor_submit}, \code{\link{condor_q}}, \code{\link{condor_dir}}, and 
 \code{\link{condor_download}} downloads results from a Condor job.
 
 \code{\link{condor-package}} gives an overview of the package.

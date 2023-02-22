@@ -16,9 +16,9 @@
 #' @seealso
 #' \code{\link{condor_submit}} submits a Condor job.
 #'
-#' \code{\link{condor_q}} lists the Condor job queue.
+#' \code{\link{condor_log}} shows Condor log file.
 #'
-#' \code{\link{condor_download}} downloads results from a Condor job.
+#' \code{\link{condor_q}} lists the Condor job queue.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
@@ -27,7 +27,10 @@
 #' library(ssh)
 #' session <- ssh_connect("NOUOFPCALC02")
 #'
+#' condor_submit()
+#' condor_q()
 #' condor_dir()
+#' condor_download()  # after job has finished
 #' }
 #'
 #' @importFrom ssh ssh_exec_internal
