@@ -47,8 +47,8 @@ condor_download()  # after job has finished
 
 }
 \seealso{
-\code{condor_submit}, \code{\link{condor_q}}, \code{\link{condor_dir}}, and 
-\code{\link{condor_download}} downloads results from a Condor job.
+\code{condor_submit}, \code{\link{condor_q}}, \code{\link{condor_dir}}, and
+\code{\link{condor_download}} provide the main Condor interface.
 
 \code{\link{condor-package}} gives an overview of the package.
 }

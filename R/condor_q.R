@@ -10,11 +10,8 @@
 #' explicitly specifying the \code{session}.
 #'
 #' @seealso
-#' \code{\link{condor_submit}} submits a Condor job.
-#'
-#' \code{\link{condor_dir}} lists Condor directories.
-#'
-#' \code{\link{condor_download}} downloads results from a Condor job.
+#' \code{\link{condor_submit}}, \code{condor_q}, \code{\link{condor_dir}}, and
+#' \code{\link{condor_download}} provide the main Condor interface.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'

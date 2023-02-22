@@ -14,11 +14,8 @@
 #' @return \code{character} vector of directory names.
 #'
 #' @seealso
-#' \code{\link{condor_submit}} submits a Condor job.
-#'
-#' \code{\link{condor_log}} shows Condor log file.
-#'
-#' \code{\link{condor_q}} lists the Condor job queue.
+#' \code{\link{condor_submit}}, \code{\link{condor_q}}, \code{condor_dir}, and
+#' \code{\link{condor_download}} provide the main Condor interface.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'

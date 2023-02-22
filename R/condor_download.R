@@ -24,9 +24,9 @@
 #' explicitly specifying the \code{session}.
 #'
 #' @seealso
-#' \code{\link{condor_q}} lists the Condor job queue.
-#'
-#' \code{\link{condor_dir}} lists Condor directories.
+#' \code{\link{condor_submit}}, \code{\link{condor_q}},
+#' \code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
+#' interface.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
