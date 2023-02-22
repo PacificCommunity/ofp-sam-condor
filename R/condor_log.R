@@ -62,7 +62,10 @@ condor_log <- function(run.dir=".", top.dir="condor", session=NULL)
   txt
 }
 
+#' @rdname condor-internal
+#'
 #' @export
+#' @export print.condor_log
 
 print.condor_log <- function(x, ...)
 {
