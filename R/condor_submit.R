@@ -42,7 +42,7 @@
 #'
 #' @importFrom ssh scp_upload ssh_exec_internal ssh_exec_wait
 #' @importFrom stats setNames
-#' @importFrom utils tar
+#' @importFrom utils tail tar
 #'
 #' @export
 
