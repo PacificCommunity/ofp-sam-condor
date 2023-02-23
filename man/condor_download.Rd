@@ -4,14 +4,17 @@
 \alias{condor_download}
 \title{Condor Download}
 \usage{
-condor_download(remote.dir = NULL, local.dir = ".",
+condor_download(remote.dir = NULL, local.dir = ".", subdir = "results",
   pattern = "condor_mfcl|End.tar.gz", overwrite = FALSE, remove = TRUE,
   untar.end = TRUE, session = NULL)
 }
 \arguments{
 \item{remote.dir}{remote directory containing Condor job results.}
 
-\item{local.dir}{local directory to download to.}
+\item{local.dir}{local directory to download to, possibly combined with a
+\code{subdir}.}
+
+\item{subdir}{subdirectory within \code{local.dir} to download to.}
 
 \item{pattern}{pattern identifying which result files to download.}
 
@@ -34,6 +37,10 @@ The default value of \code{remote.dir = NULL} looks for Condor job results in
 \code{condor/}\emph{local.dir}. For example, if
 \code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
 \code{"condor/run01"}.
+
+To download directly to \code{local.dir}, pass \code{subdir = FALSE},
+\code{NULL}, or \code{""}. If \code{local.dir} already ends with
+\code{subdir}, then \code{subdir} is ignored.
 
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without

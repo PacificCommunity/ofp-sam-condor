@@ -3,7 +3,9 @@
 #' Download results from a Condor job.
 #'
 #' @param remote.dir remote directory containing Condor job results.
-#' @param local.dir local directory to download to.
+#' @param local.dir local directory to download to, possibly combined with a
+#'        \code{subdir}.
+#' @param subdir subdirectory within \code{local.dir} to download to.
 #' @param pattern pattern identifying which result files to download.
 #' @param overwrite whether to overwrite local files if they already exist.
 #' @param remove whether to remove remote directory after downloading result
@@ -18,6 +20,10 @@
 #' \code{condor/}\emph{local.dir}. For example, if
 #' \code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
 #' \code{"condor/run01"}.
+#'
+#' To download directly to \code{local.dir}, pass \code{subdir = FALSE},
+#' \code{NULL}, or \code{""}. If \code{local.dir} already ends with
+#' \code{subdir}, then \code{subdir} is ignored.
 #'
 #' The default value of \code{session = NULL} looks for a \code{session} object
 #' in the user workspace. This allows the user to run Condor functions without
@@ -46,7 +52,7 @@
 #'
 #' @export
 
-condor_download <- function(remote.dir=NULL, local.dir=".",
+condor_download <- function(remote.dir=NULL, local.dir=".", subdir="results",
                             pattern="condor_mfcl|End.tar.gz", overwrite=FALSE,
                             remove=TRUE, untar.end=TRUE, session=NULL)
 {
@@ -57,6 +63,18 @@ condor_download <- function(remote.dir=NULL, local.dir=".",
   # Default remote.dir
   if(is.null(remote.dir))
     remote.dir <- file.path("condor", basename(local.dir))
+
+  # Confirm that local.dir exists
+  if(!dir.exists(local.dir))
+    stop(local.dir, " not found")
+
+  # Combine local.dir with subdir
+  ok <- !identical(subdir, FALSE) && !is.null(subdir) && !identical(subdir, "")
+  if(ok && basename(local.dir) != subdir)
+  {
+    local.dir <- file.path(local.dir, subdir)
+    dir.create(local.dir, showWarnings=FALSE, recursive=TRUE)
+  }
 
   # Look for user session
   if(is.null(session))
