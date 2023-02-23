@@ -5,7 +5,7 @@
 #' @param remote.dir remote directory containing Condor job results.
 #' @param local.dir local directory to download to, possibly combined with a
 #'        \code{subdir}.
-#' @param subdir subdirectory within \code{local.dir} to download to.
+#' @param subdir subdirectory to append to \code{local.dir}.
 #' @param pattern regular expression identifying which result files to download.
 #' @param overwrite whether to overwrite local files if they already exist.
 #' @param remove whether to remove remote directory after downloading result
@@ -21,7 +21,8 @@
 #' \code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
 #' \code{"condor/run01"}.
 #'
-#' To download directly to \code{local.dir}, pass \code{subdir = FALSE},
+#' Generally, \code{local.dir} is updated by appending \code{subdir}. To
+#' download directly to \code{local.dir} instead, pass \code{subdir = FALSE},
 #' \code{NULL}, or \code{""}. If \code{local.dir} already ends with
 #' \code{subdir}, then \code{subdir} is ignored.
 #'

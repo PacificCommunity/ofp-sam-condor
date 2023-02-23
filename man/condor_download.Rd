@@ -14,7 +14,7 @@ condor_download(remote.dir = NULL, local.dir = ".", subdir = "results",
 \item{local.dir}{local directory to download to, possibly combined with a
 \code{subdir}.}
 
-\item{subdir}{subdirectory within \code{local.dir} to download to.}
+\item{subdir}{subdirectory to append to \code{local.dir}.}
 
 \item{pattern}{regular expression identifying which result files to download.}
 
@@ -38,7 +38,8 @@ The default value of \code{remote.dir = NULL} looks for Condor job results in
 \code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
 \code{"condor/run01"}.
 
-To download directly to \code{local.dir}, pass \code{subdir = FALSE},
+Generally, \code{local.dir} is updated by appending \code{subdir}. To
+download directly to \code{local.dir} instead, pass \code{subdir = FALSE},
 \code{NULL}, or \code{""}. If \code{local.dir} already ends with
 \code{subdir}, then \code{subdir} is ignored.
 
