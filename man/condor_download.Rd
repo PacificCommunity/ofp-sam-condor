@@ -5,8 +5,8 @@
 \title{Condor Download}
 \usage{
 condor_download(remote.dir = NULL, local.dir = ".", subdir = "results",
-  pattern = "condor_mfcl|End.tar.gz", overwrite = FALSE, remove = TRUE,
-  untar.end = TRUE, session = NULL)
+  pattern = "End.tar.gz|condor.*(err|log|out)$", overwrite = FALSE,
+  remove = TRUE, untar.end = TRUE, session = NULL)
 }
 \arguments{
 \item{remote.dir}{remote directory containing Condor job results.}
@@ -16,7 +16,7 @@ condor_download(remote.dir = NULL, local.dir = ".", subdir = "results",
 
 \item{subdir}{subdirectory within \code{local.dir} to download to.}
 
-\item{pattern}{pattern identifying which result files to download.}
+\item{pattern}{regular expression identifying which result files to download.}
 
 \item{overwrite}{whether to overwrite local files if they already exist.}
 
