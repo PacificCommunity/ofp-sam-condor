@@ -93,7 +93,7 @@ condor_download <- function(remote.dir=NULL, local.dir=".", subdir="results",
 
   # Look for files matching pattern
   files <- ssh_exec_stdout(paste("cd", remote.dir, "; ls"))
-  files <- grep("condor_mfcl|End.tar.gz", files, value=TRUE)
+  files <- grep(pattern, files, value=TRUE)
 
   # Confirm that files do not already exist in local.dir
   if(!overwrite)
