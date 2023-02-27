@@ -4,14 +4,18 @@
 \alias{condor_submit}
 \title{Condor Submit}
 \usage{
-condor_submit(local.dir = ".", remote.dir = NULL,
+condor_submit(local.dir = ".", run.dir = NULL, top.dir = "condor",
   exclude = "condor_mfcl|tar.gz|End", session = NULL)
 }
 \arguments{
 \item{local.dir}{local directory containing a Condor \code{*.sub} file and
 any other files necessary to run the job.}
 
-\item{remote.dir}{remote directory where Condor job should run.}
+\item{run.dir}{name of a Condor run directory to create inside
+\code{top.dir}.}
+
+\item{top.dir}{top directory on submitter machine that contains Condor run
+directories.}
 
 \item{exclude}{pattern identifying files that should not be submitted to
 Condor.}
@@ -25,9 +29,9 @@ Remote directory name with the job id as a name attribute.
 Submit a Condor job.
 }
 \details{
-The default value of \code{remote.dir = NULL} runs the Condor job in
-\code{condor/}\emph{local.dir}. For example, if
-\code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
+The default value of \code{run.dir = NULL} runs the Condor job in
+\emph{top.dir}\code{/}\emph{local.dir}. For example, if
+\code{local.dir = "c:/yft/run01"} then the default \code{run.dir} becomes
 \code{"condor/run01"}.
 
 The default value of \code{session = NULL} looks for a \code{session} object

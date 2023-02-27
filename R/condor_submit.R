@@ -4,15 +4,18 @@
 #'
 #' @param local.dir local directory containing a Condor \code{*.sub} file and
 #'        any other files necessary to run the job.
-#' @param remote.dir remote directory where Condor job should run.
+#' @param run.dir name of a Condor run directory to create inside
+#'        \code{top.dir}.
+#' @param top.dir top directory on submitter machine that contains Condor run
+#'        directories.
 #' @param exclude pattern identifying files that should not be submitted to
 #'        Condor.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
-#' The default value of \code{remote.dir = NULL} runs the Condor job in
-#' \code{condor/}\emph{local.dir}. For example, if
-#' \code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
+#' The default value of \code{run.dir = NULL} runs the Condor job in
+#' \emph{top.dir}\code{/}\emph{local.dir}. For example, if
+#' \code{local.dir = "c:/yft/run01"} then the default \code{run.dir} becomes
 #' \code{"condor/run01"}.
 #'
 #' The default value of \code{session = NULL} looks for a \code{session} object
@@ -44,16 +47,17 @@
 #'
 #' @export
 
-condor_submit <- function(local.dir=".", remote.dir=NULL,
+condor_submit <- function(local.dir=".", run.dir=NULL, top.dir="condor",
                           exclude="condor_mfcl|tar.gz|End", session=NULL)
 {
   # Expand dot so basename() works
   if(local.dir == ".")
     local.dir <- getwd()
 
-  # Default remote.dir
-  if(is.null(remote.dir))
-    remote.dir <- file.path("condor", basename(local.dir))
+  # Construct remote.dir path
+  if(is.null(run.dir))
+    run.dir <- basename(local.dir)
+  remote.dir <- file.path(top.dir, run.dir)
 
   # Look for user session
   if(is.null(session))
@@ -67,7 +71,7 @@ condor_submit <- function(local.dir=".", remote.dir=NULL,
   # Confirm that Condor submitter does not already contain remote.dir
   already <- ssh_exec_internal(session, paste("ls", remote.dir), error=FALSE)
   if(already$status == 0)
-    stop(remote.dir, " already exists on Condor submitter")
+    stop("'", remote.dir, "' already exists on Condor submitter")
 
   # Create Start.tar.gz in local.dir (excluding existing tar.gz files)
   files <- dir(local.dir, full.names=TRUE)
