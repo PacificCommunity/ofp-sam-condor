@@ -55,7 +55,11 @@ summary.condor_log <- function(object, ...)
     submit.time <- NA_character_
 
   runtime <- grep("Total Remote Usage", object, value=TRUE)
-  runtime <- gsub(".* (.*),.*", "\\1", runtime)
+  hms <- gsub(".* (.*),.*", "\\1", runtime)  # hr, min, sec
+  hms <- unlist(strsplit(hms, ":"))
+  days <- gsub(".*Usr ([0-9]*).*", "\\1", runtime)
+  hms[1] <- 24 * as.integer(days) + as.integer(hms[1])
+  runtime <- paste(hms, collapse=":")
   if(length(runtime) == 0)
     runtime <- NA_character_
 
