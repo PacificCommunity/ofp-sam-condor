@@ -4,6 +4,8 @@
 #'
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
+#' @param report whether to return a detailed report of the run status in each
+#'        directory.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -11,11 +13,16 @@
 #' in the user workspace. This allows the user to run Condor functions without
 #' explicitly specifying the \code{session}.
 #'
-#' @return \code{character} vector of directory names.
+#' @return
+#' A data frame containing details about each directory, or if
+#' \code{report = FALSE} a \code{character} vector of directory names.
 #'
 #' @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}}, \code{condor_dir}, and
 #' \code{\link{condor_download}} provide the main Condor interface.
+#'
+#' \code{\link{condor_log}} and \code{\link{summary.condor_log}} are called to
+#' produce the detailed report if \code{report = TRUE}.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
@@ -34,7 +41,7 @@
 #'
 #' @export
 
-condor_dir <- function(top.dir="condor", session=NULL)
+condor_dir <- function(top.dir="condor", report=TRUE, session=NULL)
 {
   # Look for user session
   if(is.null(session))
@@ -45,9 +52,27 @@ condor_dir <- function(top.dir="condor", session=NULL)
   if(rd.exists$status > 0)
     stop("directory '", top.dir, "' not found on Condor submitter")
 
-
+  # Get dirnames
   cmd <- paste("cd", top.dir, ";", "ls -d */")  # dirs only
   dirs <- ssh_exec_stdout(cmd)
   dirs <- sub("/", "", dirs)
-  dirs
+
+  # Prepare output
+  if(report)
+  {
+  output <- data.frame(dir=character(), job.id=integer(), status=character(),
+                       submit.time=character(), runtime=character(),
+                       disk=numeric(), memory=numeric())
+    for(i in seq_along(dirs))
+    {
+      output[i,1] <- dirs[i]
+      output[i,-1] <- summary(condor_log(dirs[i]))
+    }
+  }
+  else
+  {
+    output <- dirs
+  }
+
+  output
 }

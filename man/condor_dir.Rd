@@ -4,16 +4,20 @@
 \alias{condor_dir}
 \title{Condor Directories}
 \usage{
-condor_dir(top.dir = "condor", session = NULL)
+condor_dir(top.dir = "condor", report = TRUE, session = NULL)
 }
 \arguments{
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
 
+\item{report}{whether to return a detailed report of the run status in each
+directory.}
+
 \item{session}{optional object of class \code{ssh_connect}.}
 }
 \value{
-\code{character} vector of directory names.
+A data frame containing details about each directory, or if
+\code{report = FALSE} a \code{character} vector of directory names.
 }
 \description{
 List directories on Condor submitter.
@@ -38,6 +42,9 @@ condor_download()  # after job has finished
 \seealso{
 \code{\link{condor_submit}}, \code{\link{condor_q}}, \code{condor_dir}, and
 \code{\link{condor_download}} provide the main Condor interface.
+
+\code{\link{condor_log}} and \code{\link{summary.condor_log}} are called to
+produce the detailed report if \code{report = TRUE}.
 
 \code{\link{condor-package}} gives an overview of the package.
 }
