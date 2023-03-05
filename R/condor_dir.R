@@ -2,11 +2,13 @@
 #'
 #' List directories on Condor submitter.
 #'
+#' @param pattern regular expression identifying which run directories to show.
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
 #' @param report whether to return a detailed report of the run status in each
 #'        directory.
 #' @param session optional object of class \code{ssh_connect}.
+#' @param \dots passed to \code{\link{grep}}.
 #'
 #' @details
 #' The default value of \code{session = NULL} looks for a \code{session} object
@@ -46,7 +48,8 @@
 #'
 #' @export
 
-condor_dir <- function(top.dir="condor", report=TRUE, session=NULL)
+condor_dir <- function(pattern=NULL, top.dir="condor", report=TRUE,
+                       session=NULL, ...)
 {
   # Look for user session
   if(is.null(session))
@@ -61,13 +64,15 @@ condor_dir <- function(top.dir="condor", report=TRUE, session=NULL)
   cmd <- paste("cd", top.dir, ";", "ls -d */")  # dirs only
   dirs <- ssh_exec_stdout(cmd)
   dirs <- sub("/", "", dirs)
+  if(pattern)
+    dirs <- grep(pattern, dirs, value=TRUE, ...)
 
   # Prepare output
   if(report)
   {
-  output <- data.frame(dir=character(), job.id=integer(), status=character(),
-                       submit.time=character(), runtime=character(),
-                       disk=numeric(), memory=numeric())
+    output <- data.frame(dir=character(), job.id=integer(), status=character(),
+                         submit.time=character(), runtime=character(),
+                         disk=numeric(), memory=numeric())
     for(i in seq_along(dirs))
     {
       output[i,1] <- dirs[i]

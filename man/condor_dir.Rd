@@ -4,9 +4,12 @@
 \alias{condor_dir}
 \title{Condor Directories}
 \usage{
-condor_dir(top.dir = "condor", report = TRUE, session = NULL)
+condor_dir(pattern = NULL, top.dir = "condor", report = TRUE,
+  session = NULL, ...)
 }
 \arguments{
+\item{pattern}{regular expression identifying which run directories to show.}
+
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
 
@@ -14,6 +17,8 @@ directories.}
 directory.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
+
+\item{\dots}{passed to \code{\link{grep}}.}
 }
 \value{
 A data frame containing details about each directory, or if
