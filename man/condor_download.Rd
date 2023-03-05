@@ -4,12 +4,15 @@
 \alias{condor_download}
 \title{Condor Download}
 \usage{
-condor_download(remote.dir = NULL, local.dir = ".", subdir = "results",
-  pattern = "End.tar.gz|condor.*(err|log|out)$", overwrite = FALSE,
-  remove = TRUE, untar.end = TRUE, session = NULL)
+condor_download(run.dir = NULL, top.dir = "condor", local.dir = ".",
+  subdir = "results", pattern = "End.tar.gz|condor.*(err|log|out)$",
+  overwrite = FALSE, remove = TRUE, untar.end = TRUE, session = NULL)
 }
 \arguments{
-\item{remote.dir}{remote directory containing Condor job results.}
+\item{run.dir}{name of a Condor run directory inside \code{top.dir}.}
+
+\item{top.dir}{top directory on submitter machine that contains Condor run
+directories.}
 
 \item{local.dir}{local directory to download to, possibly combined with a
 \code{subdir}.}
@@ -33,9 +36,9 @@ files.}
 Download results from a Condor job.
 }
 \details{
-The default value of \code{remote.dir = NULL} looks for Condor job results in
-\code{condor/}\emph{local.dir}. For example, if
-\code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
+The default value of \code{run.dir = NULL} looks for Condor job results in
+\emph{top.dir}\code{/}\emph{local.dir}. For example, if
+\code{local.dir = "c:/yft/run01"} then the default \code{run.dir} becomes
 \code{"condor/run01"}.
 
 Generally, \code{local.dir} is updated by appending \code{subdir}. To

@@ -2,7 +2,9 @@
 #'
 #' Download results from a Condor job.
 #'
-#' @param remote.dir remote directory containing Condor job results.
+#' @param run.dir name of a Condor run directory inside \code{top.dir}.
+#' @param top.dir top directory on submitter machine that contains Condor run
+#'        directories.
 #' @param local.dir local directory to download to, possibly combined with a
 #'        \code{subdir}.
 #' @param subdir subdirectory to append to \code{local.dir}.
@@ -16,9 +18,9 @@
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
-#' The default value of \code{remote.dir = NULL} looks for Condor job results in
-#' \code{condor/}\emph{local.dir}. For example, if
-#' \code{local.dir = "c:/yft/run01"} then the default \code{remote.dir} becomes
+#' The default value of \code{run.dir = NULL} looks for Condor job results in
+#' \emph{top.dir}\code{/}\emph{local.dir}. For example, if
+#' \code{local.dir = "c:/yft/run01"} then the default \code{run.dir} becomes
 #' \code{"condor/run01"}.
 #'
 #' Generally, \code{local.dir} is updated by appending \code{subdir}. To
@@ -53,7 +55,8 @@
 #'
 #' @export
 
-condor_download <- function(remote.dir=NULL, local.dir=".", subdir="results",
+condor_download <- function(run.dir=NULL, top.dir="condor", local.dir=".",
+                            subdir="results",
                             pattern="End.tar.gz|condor.*(err|log|out)$",
                             overwrite=FALSE, remove=TRUE, untar.end=TRUE,
                             session=NULL)
@@ -62,9 +65,10 @@ condor_download <- function(remote.dir=NULL, local.dir=".", subdir="results",
   if(local.dir == ".")
     local.dir <- getwd()
 
-  # Default remote.dir
-  if(is.null(remote.dir))
-    remote.dir <- file.path("condor", basename(local.dir))
+  # Construct remote.dir path
+  if(is.null(run.dir))
+    run.dir <- basename(local.dir)
+  remote.dir <- file.path(top.dir, run.dir)
 
   # Confirm that local.dir exists
   if(!dir.exists(local.dir))
