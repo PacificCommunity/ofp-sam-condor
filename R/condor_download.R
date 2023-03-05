@@ -5,9 +5,7 @@
 #' @param run.dir name of a Condor run directory inside \code{top.dir}.
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
-#' @param local.dir local directory to download to, possibly combined with a
-#'        \code{subdir}.
-#' @param subdir subdirectory to append to \code{local.dir}.
+#' @param local.dir local directory to download to.
 #' @param pattern regular expression identifying which result files to download.
 #' @param overwrite whether to overwrite local files if they already exist.
 #' @param remove whether to remove remote directory after downloading result
@@ -22,11 +20,6 @@
 #' \emph{top.dir}\code{/}\emph{local.dir}. For example, if
 #' \code{local.dir = "c:/yft/run01"} then the default \code{run.dir} becomes
 #' \code{"condor/run01"}.
-#'
-#' Generally, \code{local.dir} is updated by appending \code{subdir}. To
-#' download directly to \code{local.dir} instead, pass \code{subdir = FALSE},
-#' \code{NULL}, or \code{""}. If \code{local.dir} already ends with
-#' \code{subdir}, then \code{subdir} is ignored.
 #'
 #' The default value of \code{session = NULL} looks for a \code{session} object
 #' in the user workspace. This allows the user to run Condor functions without
@@ -56,7 +49,6 @@
 #' @export
 
 condor_download <- function(run.dir=NULL, top.dir="condor", local.dir=".",
-                            subdir=FALSE,
                             pattern="End.tar.gz|condor.*(err|log|out)$",
                             overwrite=FALSE, remove=TRUE, untar.end=TRUE,
                             session=NULL)
@@ -74,13 +66,8 @@ condor_download <- function(run.dir=NULL, top.dir="condor", local.dir=".",
   if(!dir.exists(local.dir))
     stop(local.dir, " not found")
 
-  # Combine local.dir with subdir
-  ok <- !identical(subdir, FALSE) && !is.null(subdir) && !identical(subdir, "")
-  if(ok && basename(local.dir) != subdir)
-  {
-    local.dir <- file.path(local.dir, subdir)
-    dir.create(local.dir, showWarnings=FALSE, recursive=TRUE)
-  }
+  # Ensure local.dir exists
+  dir.create(local.dir, showWarnings=FALSE, recursive=TRUE)
 
   # Look for user session
   if(is.null(session))

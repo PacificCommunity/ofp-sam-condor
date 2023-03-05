@@ -5,8 +5,8 @@
 \title{Condor Download}
 \usage{
 condor_download(run.dir = NULL, top.dir = "condor", local.dir = ".",
-  subdir = FALSE, pattern = "End.tar.gz|condor.*(err|log|out)$",
-  overwrite = FALSE, remove = TRUE, untar.end = TRUE, session = NULL)
+  pattern = "End.tar.gz|condor.*(err|log|out)$", overwrite = FALSE,
+  remove = TRUE, untar.end = TRUE, session = NULL)
 }
 \arguments{
 \item{run.dir}{name of a Condor run directory inside \code{top.dir}.}
@@ -14,10 +14,7 @@ condor_download(run.dir = NULL, top.dir = "condor", local.dir = ".",
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
 
-\item{local.dir}{local directory to download to, possibly combined with a
-\code{subdir}.}
-
-\item{subdir}{subdirectory to append to \code{local.dir}.}
+\item{local.dir}{local directory to download to.}
 
 \item{pattern}{regular expression identifying which result files to download.}
 
@@ -40,11 +37,6 @@ The default value of \code{run.dir = NULL} looks for Condor job results in
 \emph{top.dir}\code{/}\emph{local.dir}. For example, if
 \code{local.dir = "c:/yft/run01"} then the default \code{run.dir} becomes
 \code{"condor/run01"}.
-
-Generally, \code{local.dir} is updated by appending \code{subdir}. To
-download directly to \code{local.dir} instead, pass \code{subdir = FALSE},
-\code{NULL}, or \code{""}. If \code{local.dir} already ends with
-\code{subdir}, then \code{subdir} is ignored.
 
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without
