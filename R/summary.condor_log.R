@@ -60,7 +60,7 @@ summary.condor_log <- function(object, ...)
   days <- gsub(".*Usr ([0-9]*).*", "\\1", runtime)
   hms[1] <- 24 * as.integer(days) + as.integer(hms[1])
   runtime <- paste(hms, collapse=":")
-  if(length(runtime) == 0)
+  if(length(runtime) == 0 || runtime == "")
     runtime <- NA_character_
 
   disk <- grep("Disk \\(KB\\)", object, value=TRUE)
