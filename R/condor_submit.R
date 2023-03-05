@@ -18,6 +18,11 @@
 #' \code{local.dir = "c:/yft/run01"} then the default \code{run.dir} becomes
 #' \code{"condor/run01"}.
 #'
+#' It can be practical to organize Condor runs inside the default
+#' \code{top.dir = "condor"} directory, to distinguish Condor runs from other
+#' directories inside the user home. To organize Condor runs directly in the
+#' home folder on the submitter machine, pass \code{top.dir = ""}.
+#'
 #' The default value of \code{session = NULL} looks for a \code{session} object
 #' in the user workspace. This allows the user to run Condor functions without
 #' explicitly specifying the \code{session}.
