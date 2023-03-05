@@ -56,7 +56,7 @@
 #' @export
 
 condor_download <- function(run.dir=NULL, top.dir="condor", local.dir=".",
-                            subdir="results",
+                            subdir=FALSE,
                             pattern="End.tar.gz|condor.*(err|log|out)$",
                             overwrite=FALSE, remove=TRUE, untar.end=TRUE,
                             session=NULL)
