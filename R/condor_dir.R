@@ -17,6 +17,11 @@
 #' A data frame containing details about each directory, or if
 #' \code{report = FALSE} a \code{character} vector of directory names.
 #'
+#' @note
+#' If there are many Condor run directories, the report generation can take
+#' substantial time (one SSH execution per run directory). To quickly return a
+#' vector of directory names, pass \code{report = FALSE}.
+#'
 #' @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}}, \code{condor_dir}, and
 #' \code{\link{condor_download}} provide the main Condor interface.

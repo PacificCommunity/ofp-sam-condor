@@ -27,6 +27,11 @@ The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without
 explicitly specifying the \code{session}.
 }
+\note{
+If there are many Condor run directories, the report generation can take
+substantial time (one SSH execution per run directory). To quickly return a
+vector of directory names, pass \code{report = FALSE}.
+}
 \examples{
 \dontrun{
 library(ssh)
