@@ -24,7 +24,7 @@ directories.}
 files.}
 
 \item{untar.end}{whether to extract \code{End.tar.gz} into
-\emph{local.dir}\code{/End}. (Ignored if a file named
+\emph{local.dir} after downloading. (Ignored if a file named
 \file{End.tar.gz} was not downloaded.)}
 
 \item{session}{optional object of class \code{ssh_connect}.}

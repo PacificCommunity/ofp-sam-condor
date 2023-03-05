@@ -11,7 +11,7 @@
 #' @param remove whether to remove remote directory after downloading result
 #'        files.
 #' @param untar.end whether to extract \code{End.tar.gz} into
-#'        \emph{local.dir}\code{/End}. (Ignored if a file named
+#'        \emph{local.dir} after downloading. (Ignored if a file named
 #'        \file{End.tar.gz} was not downloaded.)
 #' @param session optional object of class \code{ssh_connect}.
 #'
@@ -100,7 +100,7 @@ condor_download <- function(run.dir=NULL, top.dir="condor", local.dir=".",
   sapply(file.path(remote.dir, files), scp_download, session=session,
          to=local.dir)
   if(untar.end && file.exists(file.path(local.dir, "End.tar.gz")))
-    untar(file.path(local.dir, "End.tar.gz"), exdir=file.path(local.dir, "End"))
+    untar(file.path(local.dir, "End.tar.gz"), exdir=local.dir)
 
   # Remove remote.dir
   if(remove)
