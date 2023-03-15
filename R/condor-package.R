@@ -24,7 +24,7 @@
 #'   \code{\link{ssh_exec_stdout}}    \tab execute command
 #' }
 #'
-#' @author Arni Magnusson with contributions by Jemery Day.
+#' @author Arni Magnusson with contributions by Jemery Day and Thomas Teears.
 #'
 #' @references
 #' \url{https://github.com/PacificCommunity/ofp-sam-condor}

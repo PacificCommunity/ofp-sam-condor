@@ -31,5 +31,5 @@ Tools that support submitting, listing, and downloading Condor jobs from R.
 machine.
 }
 \author{
-Arni Magnusson with contributions by Jemery Day.
+Arni Magnusson with contributions by Jemery Day and Thomas Teears.
 }
