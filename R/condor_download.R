@@ -50,7 +50,7 @@
 
 condor_download <- function(run.dir=NULL, top.dir="condor", local.dir=".",
                             pattern="End.tar.gz|condor.*(err|log|out)$",
-                            overwrite=FALSE, remove=TRUE, untar.end=TRUE,
+                            overwrite=FALSE, remove=FALSE, untar.end=TRUE,
                             session=NULL)
 {
   # Expand dot so basename() works
