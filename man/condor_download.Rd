@@ -6,7 +6,7 @@
 \usage{
 condor_download(run.dir = NULL, top.dir = "condor", local.dir = ".",
   pattern = "End.tar.gz|condor.*(err|log|out)$", overwrite = FALSE,
-  remove = TRUE, untar.end = TRUE, session = NULL)
+  remove = FALSE, untar.end = TRUE, session = NULL)
 }
 \arguments{
 \item{run.dir}{name of a Condor run directory inside \code{top.dir}.}
