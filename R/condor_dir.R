@@ -3,6 +3,7 @@
 #' List directories on Condor submitter.
 #'
 #' @param pattern regular expression identifying which run directories to show.
+#'        The default is to show all directories inside \code{top.dir}.
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
 #' @param report whether to return a detailed report of the run status in each
@@ -48,8 +49,8 @@
 #'
 #' @export
 
-condor_dir <- function(pattern=NULL, top.dir="condor", report=TRUE,
-                       session=NULL, ...)
+condor_dir <- function(pattern="*", top.dir="condor", report=TRUE, session=NULL,
+                       ...)
 {
   # Look for user session
   if(is.null(session))
@@ -64,8 +65,7 @@ condor_dir <- function(pattern=NULL, top.dir="condor", report=TRUE,
   cmd <- paste("cd", top.dir, ";", "ls -d */")  # dirs only
   dirs <- ssh_exec_stdout(cmd)
   dirs <- sub("/", "", dirs)
-  if(pattern)
-    dirs <- grep(pattern, dirs, value=TRUE, ...)
+  dirs <- grep(pattern, dirs, value=TRUE, ...)
 
   # Prepare output
   if(report)

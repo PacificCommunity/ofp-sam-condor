@@ -4,11 +4,12 @@
 \alias{condor_dir}
 \title{Condor Directories}
 \usage{
-condor_dir(pattern = NULL, top.dir = "condor", report = TRUE,
+condor_dir(pattern = "*", top.dir = "condor", report = TRUE,
   session = NULL, ...)
 }
 \arguments{
-\item{pattern}{regular expression identifying which run directories to show.}
+\item{pattern}{regular expression identifying which run directories to show.
+The default is to show all directories inside \code{top.dir}.}
 
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
