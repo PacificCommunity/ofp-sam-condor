@@ -16,7 +16,8 @@ directories.}
 
 \item{local.dir}{local directory to download to.}
 
-\item{pattern}{regular expression identifying which result files to download.}
+\item{pattern}{regular expression identifying which result files to download.
+Passing \code{pattern="*"} will download all files.}
 
 \item{overwrite}{whether to overwrite local files if they already exist.}
 
@@ -37,6 +38,11 @@ The default value of \code{run.dir = NULL} looks for Condor job results in
 \emph{top.dir}\code{/}\emph{local.dir}. For example, if
 \code{local.dir = "c:/yft/run01"} then the default \code{run.dir} becomes
 \code{"condor/run01"}.
+
+The default value of \code{pattern="End.tar.gz|condor.*(err|log|out)$"}
+downloads \code{End.tar.gz} and Condor log files. For many analyses, it can
+be convenient to pack all results into End.tar.gz to make it easy to find,
+download, and manage output files.
 
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without
