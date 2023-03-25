@@ -1,7 +1,7 @@
 condor
 ======
 
-The condor package provides tools to interact with Condor from R.
+The condor package provides tools to interact with HTCondor from R via SSH.
 
 Installation
 ------------

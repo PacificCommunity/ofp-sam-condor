@@ -4,7 +4,7 @@
 #'
 #' @aliases condor
 #'
-#' @title Interact with Condor from R
+#' @title Interact with HTCondor from R via SSH
 #'
 #' @description
 #' Tools that support submitting, listing, and downloading Condor jobs from R.
