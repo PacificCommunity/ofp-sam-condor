@@ -68,7 +68,9 @@ condor_submit <- function(local.dir=".", run.dir=NULL, top.dir="condor",
   if(is.null(session))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
-  # Confirm that local.dir contains one *.sub
+  # Confirm that local.dir exists and contains one *.sub
+  if(!dir.exists(local.dir))
+    stop("missing local directory ", local.dir)
   subfile <- dir(local.dir, pattern="\\.sub$")
   if(length(subfile) != 1)
     stop("'local.dir' must contain one *.sub file")
