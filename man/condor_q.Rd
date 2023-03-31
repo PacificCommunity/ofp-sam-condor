@@ -4,9 +4,15 @@
 \alias{condor_q}
 \title{Condor Queue}
 \usage{
-condor_q(session = NULL)
+condor_q(all = FALSE, count = FALSE, user = "", session = NULL)
 }
 \arguments{
+\item{all}{whether to list jobs from all users.}
+
+\item{count}{whether to only show the number of jobs.}
+
+\item{user}{username to list jobs submitted by a given user.}
+
 \item{session}{optional object of class \code{ssh_connect}.}
 }
 \description{

@@ -2,6 +2,9 @@
 #'
 #' List the Condor job queue.
 #'
+#' @param all whether to list jobs from all users.
+#' @param count whether to only show the number of jobs.
+#' @param user username to list jobs submitted by a given user.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -30,11 +33,25 @@
 #'
 #' @export
 
-condor_q <- function(session=NULL)
+condor_q <- function(all=FALSE, count=FALSE, user="", session=NULL)
 {
   # Look for user session
   if(is.null(session))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
-  ssh_exec_wait(session, "condor_q")
+  # Prepare command
+  arg <- ""
+  if(all)
+    arg <- paste(arg, "-allusers")
+  if(count)
+    arg <- paste(arg, "-format '%s\n' Owner")
+  if(user != "")
+    arg <- paste(arg, "-submitter", user)
+  cmd <- paste("condor_q", arg)
+
+  # Show count or screen output
+  if(count)
+    table(ssh_exec_stdout(cmd))
+  else
+    ssh_exec_wait(session, cmd)
 }
