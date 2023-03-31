@@ -6,7 +6,10 @@
 \alias{condor}
 \title{Interact with HTCondor from R via SSH}
 \description{
-Tools that support submitting, listing, and downloading Condor jobs from R.
+Tools for interacting with HTCondor via SSH connection. Files are first
+uploaded from user machine to submitter machine, and the job is then
+submitted from the submitter machine to HTCondor. Functions are provided to
+submit, list, and download Condor jobs from R.
 }
 \details{
 \emph{Main interface:}
@@ -25,6 +28,8 @@ Tools that support submitting, listing, and downloading Condor jobs from R.
 }
 \references{
 \url{https://github.com/PacificCommunity/ofp-sam-condor}
+
+\url{https://htcondor.org}
 }
 \seealso{
 \pkg{condor} uses the \pkg{ssh} package to connect to the Condor submitter
