@@ -1,17 +1,17 @@
 Package: condor
 Version: 1.0.0
 Date: 2023-03-31
-Title: Interact with HTCondor from R via SSH
+Title: Interact with Condor from R via SSH
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="thisisarni@gmail.com"),
              person("Jemery", "Day", role="ctb"),
              person("Thomas", "Teears", role="ctb"))
 Depends: ssh
 Imports: stats, utils
-SystemRequirements: htcondor
-Description: Tools for interacting with 'HTCondor' via SSH connection. Files are
-  first uploaded from user machine to submitter machine, and the job is then
-  submitted from the submitter machine to 'HTCondor'. Functions are provided to
-  submit, list, and download Condor jobs from R.
+SystemRequirements: HTCondor
+Description: Interact with Condor from R via SSH connection. Files are first
+  uploaded from user machine to submitter machine, and the job is then submitted
+  from the submitter machine to Condor. Functions are provided to submit, list,
+  and download Condor jobs from R.
 License: GPL-3
 URL: https://github.com/PacificCommunity/ofp-sam-condor, https://htcondor.org
 Encoding: UTF-8

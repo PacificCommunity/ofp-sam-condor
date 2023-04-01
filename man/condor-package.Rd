@@ -4,12 +4,12 @@
 \name{condor-package}
 \alias{condor-package}
 \alias{condor}
-\title{Interact with HTCondor from R via SSH}
+\title{Interact with Condor from R via SSH}
 \description{
-Tools for interacting with HTCondor via SSH connection. Files are first
-uploaded from user machine to submitter machine, and the job is then
-submitted from the submitter machine to HTCondor. Functions are provided to
-submit, list, and download Condor jobs from R.
+Interact with Condor from R via SSH connection. Files are first uploaded from
+user machine to submitter machine, and the job is then submitted from the
+submitter machine to Condor. Functions are provided to submit, list, and
+download Condor jobs from R.
 }
 \details{
 \emph{Main interface:}
