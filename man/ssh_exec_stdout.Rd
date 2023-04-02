@@ -13,6 +13,9 @@ ssh_exec_stdout(command, session = NULL, ...)
 
 \item{\dots}{passed to \code{\link[ssh]{ssh_exec_internal}}.}
 }
+\value{
+A \code{"character"} vector containing the standard output.
+}
 \description{
 Call \code{ssh_exec_internal} and convert the standard output to characters.
 }

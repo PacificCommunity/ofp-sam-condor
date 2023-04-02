@@ -30,6 +30,9 @@ files.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Download results from a Condor job.
 }

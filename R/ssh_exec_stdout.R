@@ -11,6 +11,8 @@
 #' in the user workspace. This allows the user to run Condor functions without
 #' explicitly specifying the \code{session}.
 #'
+#' @return A \code{"character"} vector containing the standard output.
+#'
 #' @seealso
 #' \code{\link[ssh]{ssh_exec_wait}} runs a command or script and shows the
 #' standard output in the R console, while returning the exit status.

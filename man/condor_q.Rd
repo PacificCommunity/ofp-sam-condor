@@ -15,6 +15,9 @@ condor_q(all = FALSE, count = FALSE, user = "", session = NULL)
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 List the Condor job queue.
 }

@@ -12,6 +12,8 @@
 #' in the user workspace. This allows the user to run Condor functions without
 #' explicitly specifying the \code{session}.
 #'
+#' @return No return value, called for side effects.
+#'
 #' @seealso
 #' \code{\link{condor_submit}}, \code{condor_q}, \code{\link{condor_dir}}, and
 #' \code{\link{condor_download}} provide the main Condor interface.

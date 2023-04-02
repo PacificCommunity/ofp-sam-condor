@@ -7,6 +7,9 @@
 \usage{
 \method{print}{condor_log}(x, ...)
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 These functions are called by user-level functions. The functionality is
 documented in the user-level functions.
