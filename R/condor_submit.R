@@ -19,7 +19,7 @@
 #' \code{"condor/run01"}.
 #'
 #' It can be practical to organize Condor runs inside the default
-#' \code{top.dir = "condor"} directory, to distinguish Condor runs from other
+#' \code{top.dir = "condor"} directory, to keep Condor runs separate from other
 #' directories inside the user home. To organize Condor runs directly in the
 #' home folder on the submitter machine, pass \code{top.dir = ""}.
 #'
