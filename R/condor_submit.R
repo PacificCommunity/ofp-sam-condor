@@ -83,14 +83,13 @@ condor_submit <- function(local.dir=".", run.dir=NULL, top.dir="condor",
   # Create Start.tar.gz in local.dir (excluding existing tar.gz files)
   files <- dir(local.dir, full.names=TRUE)
   files <- grep(exclude, files, invert=TRUE, value=TRUE)
-  owd <- setwd(local.dir)
+  owd <- setwd(local.dir); on.exit(setwd(owd))  # avoid paths inside tar file
   tar("Start.tar.gz", basename(files), compression="gzip")
-  setwd(owd)
 
   # Create remote.dir on submitter, upload, unzip, and run
   ssh_exec_wait(session, paste("mkdir -p", remote.dir))
-  scp_upload(session, files=file.path(local.dir, "Start.tar.gz"), to=remote.dir)
-  file.remove(file.path(local.dir, "Start.tar.gz"))
+  scp_upload(session, files="Start.tar.gz", to=remote.dir)
+  file.remove("Start.tar.gz")
   cmd <- paste("cd", remote.dir, ";",
                "tar -xzf Start.tar.gz;",
                "condor_submit", subfile)
