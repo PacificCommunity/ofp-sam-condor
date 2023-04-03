@@ -22,7 +22,6 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(ssh)
 #' session <- ssh_connect("NOUOFPCALC02")
 #'
 #' condor_submit()

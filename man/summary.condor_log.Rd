@@ -26,7 +26,6 @@ Produce a summary of a Condor log file.
 }
 \examples{
 \dontrun{
-library(ssh)
 session <- ssh_connect("NOUOFPCALC02")
 
 condor_dir()

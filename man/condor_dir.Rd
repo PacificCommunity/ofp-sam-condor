@@ -40,7 +40,6 @@ vector of directory names, pass \code{report = FALSE}.
 }
 \examples{
 \dontrun{
-library(ssh)
 session <- ssh_connect("NOUOFPCALC02")
 
 condor_submit()

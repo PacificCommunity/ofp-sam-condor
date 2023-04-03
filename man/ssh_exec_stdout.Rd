@@ -26,7 +26,6 @@ explicitly specifying the \code{session}.
 }
 \examples{
 \dontrun{
-library(ssh)
 session <- ssh_connect("NOUOFPCALC02")
 
 ssh_exec_wait(session, "ls")             # returns 0
