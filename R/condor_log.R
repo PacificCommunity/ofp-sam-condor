@@ -27,7 +27,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' session <- ssh_connect("NOUOFPCALC02")
+#' session <- ssh_connect("servername")
 #'
 #' condor_dir()
 #' condor_log()

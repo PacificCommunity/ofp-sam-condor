@@ -26,7 +26,7 @@ explicitly specifying the \code{session}.
 }
 \examples{
 \dontrun{
-session <- ssh_connect("NOUOFPCALC02")
+session <- ssh_connect("servername")
 
 ssh_exec_wait(session, "ls")             # returns 0
 ssh_exec_internal(session, "ls")$stdout  # returns a raw vector
