@@ -17,8 +17,8 @@ any other files necessary to run the job.}
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
 
-\item{exclude}{pattern identifying files that should not be submitted to
-Condor.}
+\item{exclude}{pattern identifying files in \code{local.dir} that should not
+be submitted to Condor.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
@@ -42,6 +42,11 @@ home folder on the submitter machine, pass \code{top.dir = ""}.
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without
 explicitly specifying the \code{session}.
+}
+\note{
+This function performs two core tasks: (1) upload files from \code{local.dir}
+to submitter machine, and (2) execute shell command \command{condor_submit}
+on submitter machine to launch the Condor job.
 }
 \examples{
 \dontrun{

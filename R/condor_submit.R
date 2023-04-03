@@ -8,8 +8,8 @@
 #'        \code{top.dir}.
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
-#' @param exclude pattern identifying files that should not be submitted to
-#'        Condor.
+#' @param exclude pattern identifying files in \code{local.dir} that should not
+#'        be submitted to Condor.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -28,6 +28,11 @@
 #' explicitly specifying the \code{session}.
 #'
 #' @return Remote directory name with the job id as a name attribute.
+#'
+#' @note
+#' This function performs two core tasks: (1) upload files from \code{local.dir}
+#' to submitter machine, and (2) execute shell command \command{condor_submit}
+#' on submitter machine to launch the Condor job.
 #'
 #' @seealso
 #' \code{condor_submit}, \code{\link{condor_q}}, \code{\link{condor_dir}}, and
