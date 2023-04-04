@@ -1,3 +1,7 @@
+[![CRAN Status](https://r-pkg.org/badges/version/condor)](https://cran.r-project.org/package=condor)
+[![CRAN Monthly](https://cranlogs.r-pkg.org/badges/condor)](https://cran.r-project.org/package=condor)
+[![CRAN Total](https://cranlogs.r-pkg.org/badges/grand-total/condor)](https://cran.r-project.org/package=condor)
+
 condor
 ======
 
