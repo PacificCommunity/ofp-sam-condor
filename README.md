@@ -5,10 +5,10 @@
 condor
 ======
 
-The condor package provides tools to interact with Condor from R via SSH
-connection. Files are first uploaded from user machine to submitter machine, and
-the job is then submitted from the submitter machine to Condor. Functions are
-provided to submit, list, and download Condor jobs from R.
+Interact with Condor from R via SSH connection. Files are first uploaded from
+user machine to submitter machine, and the job is then submitted from the
+submitter machine to Condor. Functions are provided to submit, list, and
+download Condor jobs from R.
 
 Condor is an open-source high-throughput computing software framework for
 distributed parallelization of computationally intensive tasks.
@@ -16,7 +16,9 @@ distributed parallelization of computationally intensive tasks.
 Installation
 ------------
 
-The package can be installed from CRAN using the `install.packages` command:
+The package can be installed from
+[CRAN](https://cran.r-project.org/package=condor) using the `install.packages`
+command:
 
 ```R
 install.packages("condor")
@@ -40,7 +42,7 @@ References
 Development
 -----------
 
-The condor package is developed openly on
+The package is developed openly on
 [GitHub](https://github.com/PacificCommunity/ofp-sam-condor).
 
 Feel free to open an
