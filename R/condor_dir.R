@@ -75,7 +75,7 @@ condor_dir <- function(pattern="*", top.dir="condor", report=TRUE, session=NULL,
     for(i in seq_along(dirs))
     {
       output[i,1] <- dirs[i]
-      output[i,-1] <- summary(condor_log(dirs[i]))
+      output[i,-1] <- summary(condor_log(dirs[i], top.dir=top.dir))
     }
   }
   else
