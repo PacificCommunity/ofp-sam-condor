@@ -1,7 +1,12 @@
 # condor 1.0.1 (2023-04-12)
 
-* Improve condor_dir() to allow 'top.dir' to be different from the default
+* Added argument 'create.dir' to condor_download().
+
+* Improved condor_dir() to allow 'top.dir' to be different from the default
   "condor".
+
+
+
 
 # condor 1.0.0 (2023-04-03)
 

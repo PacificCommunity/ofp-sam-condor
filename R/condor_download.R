@@ -6,6 +6,7 @@
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
 #' @param local.dir local directory to download to.
+#' @param create.dir whether to create \code{local.dir} if it does not exist.
 #' @param pattern regular expression identifying which result files to download.
 #'        Passing \code{pattern="*"} will download all files.
 #' @param overwrite whether to overwrite local files if they already exist.
@@ -56,6 +57,7 @@
 #' @export
 
 condor_download <- function(run.dir=NULL, top.dir="condor", local.dir=".",
+                            create.dir=FALSE,
                             pattern="End.tar.gz|condor.*(err|log|out)$",
                             overwrite=FALSE, remove=FALSE, untar.end=TRUE,
                             session=NULL)
@@ -70,8 +72,10 @@ condor_download <- function(run.dir=NULL, top.dir="condor", local.dir=".",
   remote.dir <- file.path(top.dir, run.dir)
 
   # Confirm that local.dir exists
-  if(!dir.exists(local.dir))
-    stop(local.dir, " not found")
+  if(!dir.exists(local.dir) && !create.dir)
+    stop("'local.dir' not found - consider create.dir=TRUE")
+  if(!dir.exists(local.dir) && create.dir)
+    dir.create(local.dir, showWarnings=FALSE, recursive=TRUE)
 
   # Ensure local.dir exists
   dir.create(local.dir, showWarnings=FALSE, recursive=TRUE)

@@ -5,8 +5,8 @@
 \title{Condor Download}
 \usage{
 condor_download(run.dir = NULL, top.dir = "condor", local.dir = ".",
-  pattern = "End.tar.gz|condor.*(err|log|out)$", overwrite = FALSE,
-  remove = FALSE, untar.end = TRUE, session = NULL)
+  create.dir = FALSE, pattern = "End.tar.gz|condor.*(err|log|out)$",
+  overwrite = FALSE, remove = FALSE, untar.end = TRUE, session = NULL)
 }
 \arguments{
 \item{run.dir}{name of a Condor run directory inside \code{top.dir}.}
@@ -15,6 +15,8 @@ condor_download(run.dir = NULL, top.dir = "condor", local.dir = ".",
 directories.}
 
 \item{local.dir}{local directory to download to.}
+
+\item{create.dir}{whether to create \code{local.dir} if it does not exist.}
 
 \item{pattern}{regular expression identifying which result files to download.
 Passing \code{pattern="*"} will download all files.}
