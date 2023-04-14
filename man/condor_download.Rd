@@ -4,17 +4,17 @@
 \alias{condor_download}
 \title{Condor Download}
 \usage{
-condor_download(run.dir = NULL, top.dir = "condor", local.dir = ".",
+condor_download(run.dir = NULL, local.dir = ".", top.dir = "condor",
   create.dir = FALSE, pattern = "End.tar.gz|condor.*(err|log|out)$",
   overwrite = FALSE, remove = FALSE, untar.end = TRUE, session = NULL)
 }
 \arguments{
 \item{run.dir}{name of a Condor run directory inside \code{top.dir}.}
 
+\item{local.dir}{local directory to download to.}
+
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
-
-\item{local.dir}{local directory to download to.}
 
 \item{create.dir}{whether to create \code{local.dir} if it does not exist.}
 
