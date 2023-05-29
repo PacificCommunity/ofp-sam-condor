@@ -1,11 +1,12 @@
 #' Condor Directories
 #'
-#' List directories on Condor submitter.
+#' List Condor run directories, either on submitter machine or on a local drive.
 #'
 #' @param pattern regular expression identifying which run directories to show.
 #'        The default is to show all directories inside \code{top.dir}.
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
+#' @param local.dir local directory to examine instead of \code{top.dir}.
 #' @param report whether to return a detailed report of the run status in each
 #'        directory.
 #' @param session optional object of class \code{ssh_connect}.
@@ -48,22 +49,32 @@
 #'
 #' @export
 
-condor_dir <- function(pattern="*", top.dir="condor", report=TRUE, session=NULL,
-                       ...)
+condor_dir <- function(pattern="*", top.dir="condor", local.dir=NULL,
+                       report=TRUE, session=NULL, ...)
 {
   # Look for user session
-  if(is.null(session))
+  if(is.null(session) && is.null(local.dir))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
   # Confirm that top.dir exists
-  rd.exists <- ssh_exec_internal(session, paste("cd", top.dir), error=FALSE)
-  if(rd.exists$status > 0)
-    stop("directory '", top.dir, "' not found on Condor submitter")
+  if(is.null(local.dir))
+  {
+    rd.exists <- ssh_exec_internal(session, paste("cd", top.dir), error=FALSE)
+    if(rd.exists$status > 0)
+      stop("directory '", top.dir, "' not found on Condor submitter")
+  }
 
   # Get dirnames
-  cmd <- paste("cd", top.dir, ";", "ls -d */")  # dirs only
-  dirs <- ssh_exec_stdout(cmd)
-  dirs <- sub("/", "", dirs)
+  if(is.null(local.dir))
+  {
+    cmd <- paste("cd", top.dir, ";", "ls -d */")  # dirs only
+    dirs <- ssh_exec_stdout(cmd)
+    dirs <- sub("/", "", dirs)
+  }
+  else
+  {
+    dirs <- dir(local.dir)
+  }
   dirs <- grep(pattern, dirs, value=TRUE, ...)
 
   # Prepare output
@@ -75,7 +86,11 @@ condor_dir <- function(pattern="*", top.dir="condor", report=TRUE, session=NULL,
     for(i in seq_along(dirs))
     {
       output[i,1] <- dirs[i]
-      output[i,-1] <- summary(condor_log(dirs[i], top.dir=top.dir))
+      if(is.null(local.dir))
+        output[i,-1] <- summary(condor_log(run.dir=dirs[i], top.dir=top.dir))
+      else
+        output[i,-1] <- summary(condor_log(local.dir=file.path(local.dir,
+                                                               dirs[i])))
     }
   }
   else

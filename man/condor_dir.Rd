@@ -4,8 +4,8 @@
 \alias{condor_dir}
 \title{Condor Directories}
 \usage{
-condor_dir(pattern = "*", top.dir = "condor", report = TRUE,
-  session = NULL, ...)
+condor_dir(pattern = "*", top.dir = "condor", local.dir = NULL,
+  report = TRUE, session = NULL, ...)
 }
 \arguments{
 \item{pattern}{regular expression identifying which run directories to show.
@@ -13,6 +13,8 @@ The default is to show all directories inside \code{top.dir}.}
 
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
+
+\item{local.dir}{local directory to examine instead of \code{top.dir}.}
 
 \item{report}{whether to return a detailed report of the run status in each
 directory.}
@@ -26,7 +28,7 @@ A data frame containing details about each directory, or if
 \code{report = FALSE} a \code{character} vector of directory names.
 }
 \description{
-List directories on Condor submitter.
+List Condor run directories, either on submitter machine or on a local drive.
 }
 \details{
 The default value of \code{session = NULL} looks for a \code{session} object
