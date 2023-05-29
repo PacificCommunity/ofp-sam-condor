@@ -42,12 +42,17 @@
 #'
 #' @examples
 #' \dontrun{
+#'
+#' # General workflow
 #' session <- ssh_connect("servername")
 #'
 #' condor_submit()
 #' condor_q()
 #' condor_dir()
 #' condor_download()  # after job has finished
+#'
+#' # Alternatively, submit a specific run
+#' condor_submit("c:/myruns/01_this_model")
 #' }
 #'
 #' @importFrom ssh scp_upload ssh_exec_internal ssh_exec_wait

@@ -26,11 +26,18 @@ Produce a summary of a Condor log file.
 }
 \examples{
 \dontrun{
+
+# Examine log files on submitter machine
 session <- ssh_connect("servername")
 
 condor_dir()
 condor_log()
 summary(condor_log())
+
+#' # Alternatively, examine log files on local drive
+condor_dir(local.dir="c:/myruns")
+condor_log(local.dir="c:/myruns/01_this_model")
+summary(condor_log(local.dir="c:/myruns/01_this_model"))
 }
 
 }

@@ -37,12 +37,17 @@
 #'
 #' @examples
 #' \dontrun{
+#'
+#' # General workflow
 #' session <- ssh_connect("servername")
 #'
 #' condor_submit()
 #' condor_q()
 #' condor_dir()
 #' condor_download()  # after job has finished
+#'
+#' # Alternatively, examine runs on local drive
+#' condor_dir(local.dir="c:/myruns")
 #' }
 #'
 #' @importFrom ssh ssh_exec_internal

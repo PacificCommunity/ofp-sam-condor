@@ -22,12 +22,17 @@
 #'
 #' @examples
 #' \dontrun{
+#'
+#' # General workflow
 #' session <- ssh_connect("servername")
 #'
 #' condor_submit()
 #' condor_q()
 #' condor_dir()
 #' condor_download()  # after job has finished
+#'
+#' # Alternatively, list number of jobs being run by each user
+#' condor_q(all=TRUE, count=TRUE)
 #' }
 #'
 #' @importFrom ssh ssh_exec_wait

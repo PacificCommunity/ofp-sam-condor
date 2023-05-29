@@ -42,12 +42,17 @@ vector of directory names, pass \code{report = FALSE}.
 }
 \examples{
 \dontrun{
+
+# General workflow
 session <- ssh_connect("servername")
 
 condor_submit()
 condor_q()
 condor_dir()
 condor_download()  # after job has finished
+
+# Alternatively, examine runs on local drive
+condor_dir(local.dir="c:/myruns")
 }
 
 }

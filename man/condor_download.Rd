@@ -55,12 +55,17 @@ explicitly specifying the \code{session}.
 }
 \examples{
 \dontrun{
+
+# General workflow
 session <- ssh_connect("servername")
 
 condor_submit()
 condor_q()
 condor_dir()
 condor_download()  # after job has finished
+
+# Alternatively, download specific run to specific folder
+condor_download("01_this_model", "c:/myruns/01_this_model")
 }
 
 }
