@@ -4,13 +4,17 @@
 \alias{condor_log}
 \title{Condor Log}
 \usage{
-condor_log(run.dir = ".", top.dir = "condor", session = NULL)
+condor_log(run.dir = ".", top.dir = "condor", local.dir = NULL,
+  session = NULL)
 }
 \arguments{
 \item{run.dir}{name of a Condor run directory inside \code{top.dir}.}
 
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
+
+\item{local.dir}{local directory to examine instead of
+\emph{top.dir}\code{/}\emph{run.dir}.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
@@ -21,7 +25,8 @@ The \code{condor_log} class is simply a \code{"character"} vector with a
 \code{print.condor_log} method.
 }
 \description{
-Show Condor log file from a run directory on submitter machine.
+Show Condor log file from a run directory, either on submitter machine or on
+a local drive.
 }
 \details{
 The default value of \code{session = NULL} looks for a \code{session} object
