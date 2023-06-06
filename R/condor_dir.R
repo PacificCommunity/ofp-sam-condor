@@ -61,12 +61,17 @@ condor_dir <- function(pattern="*", top.dir="condor", local.dir=NULL,
   if(is.null(session) && is.null(local.dir))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
-  # Confirm that top.dir exists
+  # Confirm that top.dir or local.dir exists
   if(is.null(local.dir))
   {
     rd.exists <- ssh_exec_internal(session, paste("cd", top.dir), error=FALSE)
     if(rd.exists$status > 0)
       stop("directory '", top.dir, "' not found on Condor submitter")
+  }
+  else
+  {
+    if(!dir.exists(local.dir))
+      stop("local directory '", local.dir, "' not found")
   }
 
   # Get dirnames
@@ -78,7 +83,8 @@ condor_dir <- function(pattern="*", top.dir="condor", local.dir=NULL,
   }
   else
   {
-    dirs <- dir(local.dir)
+    dirs <- dir(local.dir, full.names=TRUE)
+    dirs <- basename(dirs[dir.exists(dirs)])  # directories only
   }
   dirs <- grep(pattern, dirs, value=TRUE, ...)
 

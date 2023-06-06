@@ -60,16 +60,21 @@ condor_log <- function(run.dir=".", top.dir="condor", local.dir=NULL,
   if(is.null(session) && is.null(local.dir))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
-  # Confirm that user is downloading a single remote.dir
+  # Confirm that user is examining a single remote.dir
   if(length(directory) > 1)
     stop("only one directory can be examined at a time")
 
-  # Confirm that remote.dir exists
+  # Confirm that remote.dir or local.dir exists
   if(is.null(local.dir))
   {
     d.exists <- ssh_exec_internal(session, paste("cd", directory), error=FALSE)
     if(d.exists$status > 0)
       stop("directory '", directory, "' not found on Condor submitter")
+  }
+  else
+  {
+    if(!dir.exists(directory))
+      stop("local directory '", directory, "' not found")
   }
 
   # Look for file containing the string 'Job submitted'
@@ -84,11 +89,13 @@ condor_log <- function(run.dir=".", top.dir="condor", local.dir=NULL,
   else
   {
     filename <- dir(directory, pattern="\\.log$", full.names=TRUE)
+    if(length(filename) == 0)
+      stop("no *.log file found in '", directory, "'")
     txt <- sapply(filename, readLines)
     long <- lapply(txt, paste, collapse="\n")
     filename <- filename[sapply(long, grepl, pattern="Job submitted")]
-    if(length(filename) > 1)
-      stop("only one *.log file should contain the string 'Job submitted'")
+    if(length(filename) != 1)
+      stop("one *.log file should contain the string 'Job submitted'")
     txt <- txt[[filename]]
   }
 

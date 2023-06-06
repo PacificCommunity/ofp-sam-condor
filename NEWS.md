@@ -1,14 +1,15 @@
 # condor 1.0.2 (2023-06-06)
 
-* Changed condor_dir() so it returns an empty data frame if 'top.dir' has no
-  subdirectories, rather than an error.
+* Improved condor_dir() behavior when directories are missing or empty, log
+  files are missing or not containing keywords, and distinguishing between files
+  and directories.
 
 
 
 
 # condor 1.0.1 (2023-05-29)
 
-* Added argument 'local'dir' to condor_dir() and condor_log().
+* Added argument 'local.dir' to condor_dir() and condor_log().
 
 * Added argument 'create.dir' to condor_download(). Changed argument order in
   condor_download(), so #2 is 'local.dir' and #3 is 'top.dir'.
