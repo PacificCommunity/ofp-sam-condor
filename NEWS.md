@@ -1,8 +1,10 @@
 # condor 1.0.2 (2023-06-06)
 
-* Improved condor_dir() behavior when directories are missing or empty, log
-  files are missing or not containing keywords, and distinguishing between files
-  and directories.
+* Output from condor_dir() is sorted alphabetically by directory names.
+
+* Improved condor_dir() and condor_log() behavior when directories are missing
+  or empty, log files are missing or not containing keywords, and distinguishing
+  between files and directories.
 
 
 

@@ -79,7 +79,7 @@ condor_dir <- function(pattern="*", top.dir="condor", local.dir=NULL,
   {
     cmd <- paste("find", top.dir,
                  "-mindepth 1 -maxdepth 1 -type d -printf '%f\n'")
-    dirs <- ssh_exec_stdout(cmd)
+    dirs <- sort(ssh_exec_stdout(cmd))
   }
   else
   {
