@@ -72,9 +72,9 @@ condor_dir <- function(pattern="*", top.dir="condor", local.dir=NULL,
   # Get dirnames
   if(is.null(local.dir))
   {
-    cmd <- paste("cd", top.dir, ";", "ls -d */")  # dirs only
+    cmd <- paste("find", top.dir,
+                 "-mindepth 1 -maxdepth 1 -type d -printf '%f\n'")
     dirs <- ssh_exec_stdout(cmd)
-    dirs <- sub("/", "", dirs)
   }
   else
   {
