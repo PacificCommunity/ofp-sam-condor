@@ -14,8 +14,8 @@
 \value{
 Data frame with the following columns:
 \item{job.id}{job id.}
-\item{status}{text indicating whether job status is submitted, executing, or
-      finished.}
+\item{status}{text indicating whether job status is submitted, executing,
+  aborted, or finished.}
 \item{submit.time}{date and time when job was submitted.}
 \item{runtime}{total duration of a job.}
 \item{disk}{disk space used by job (MB).}

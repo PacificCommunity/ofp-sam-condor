@@ -8,8 +8,8 @@
 #' @return
 #' Data frame with the following columns:
 #' \item{job.id}{job id.}
-#' \item{status}{text indicating whether job status is submitted, executing, or
-#'       finished.}
+#' \item{status}{text indicating whether job status is submitted, executing,
+#'   aborted, or finished.}
 #' \item{submit.time}{date and time when job was submitted.}
 #' \item{runtime}{total duration of a job.}
 #' \item{disk}{disk space used by job (MB).}
@@ -49,6 +49,8 @@ summary.condor_log <- function(object, ...)
 
   status <- if(any(grepl("Job terminated", object)))
               "finished"
+            else if(any(grepl("Job was aborted", object)))
+              "aborted"
             else if(any(grepl("Job executing", object)))
               "executing"
             else if(any(grepl("Job submitted", object)))
