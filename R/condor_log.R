@@ -85,10 +85,12 @@ condor_log <- function(run.dir=".", top.dir="condor", local.dir=NULL,
       stop("no *.log file found in '", directory, "'")
     cmd <- paste("grep -l 'Job submitted'", file.path(directory, "*.log"))
     if(ssh_exec_internal(session, cmd, error=FALSE)$status > 0)
-      stop("no *.log file found containing the string 'Job submitted'")
+      stop("no *.log file found in '", directory,
+           "' containing the string 'Job submitted'")
     filename <- ssh_exec_stdout(cmd)
     if(length(filename) > 1)
-      stop("only one *.log file should contain the string 'Job submitted'")
+      stop("only one *.log file in '", directory,
+           "' should contain the string 'Job submitted'")
     txt <- ssh_exec_stdout(paste("cat", filename))
   }
   else
@@ -100,9 +102,11 @@ condor_log <- function(run.dir=".", top.dir="condor", local.dir=NULL,
     long <- lapply(txt, paste, collapse="\n")
     filename <- filename[sapply(long, grepl, pattern="Job submitted")]
     if(length(filename) == 0)
-      stop("no *.log file found containing the string 'Job submitted'")
+      stop("no *.log file found in '", directory,
+           "' containing the string 'Job submitted'")
     if(length(filename) > 1)
-      stop("only one *.log file should contain the string 'Job submitted'")
+      stop("only one *.log file in '", directory,
+           "' should contain the string 'Job submitted'")
     txt <- txt[[filename]]
   }
 
