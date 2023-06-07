@@ -2,11 +2,12 @@
 #'
 #' List Condor run directories, either on submitter machine or on a local drive.
 #'
-#' @param pattern regular expression identifying which run directories to show.
-#'        The default is to show all directories inside \code{top.dir}.
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
 #' @param local.dir local directory to examine instead of \code{top.dir}.
+#' @param pattern regular expression identifying which run directories to show.
+#'        The default is to show all directories inside \code{top.dir} or
+#'        \code{local.dir}.
 #' @param report whether to return a detailed report of the run status in each
 #'        directory.
 #' @param session optional object of class \code{ssh_connect}.
@@ -48,13 +49,14 @@
 #'
 #' # Alternatively, examine runs on local drive
 #' condor_dir(local.dir="c:/myruns")
+#' condor_dir("c:/myruns")
 #' }
 #'
 #' @importFrom ssh ssh_exec_internal
 #'
 #' @export
 
-condor_dir <- function(pattern="*", top.dir="condor", local.dir=NULL,
+condor_dir <- function(top.dir="condor", local.dir=NULL, pattern="*",
                        report=TRUE, session=NULL, ...)
 {
   # Look for user session

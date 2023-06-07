@@ -4,17 +4,18 @@
 \alias{condor_dir}
 \title{Condor Directories}
 \usage{
-condor_dir(pattern = "*", top.dir = "condor", local.dir = NULL,
+condor_dir(top.dir = "condor", local.dir = NULL, pattern = "*",
   report = TRUE, session = NULL, ...)
 }
 \arguments{
-\item{pattern}{regular expression identifying which run directories to show.
-The default is to show all directories inside \code{top.dir}.}
-
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
 
 \item{local.dir}{local directory to examine instead of \code{top.dir}.}
+
+\item{pattern}{regular expression identifying which run directories to show.
+The default is to show all directories inside \code{top.dir} or
+\code{local.dir}.}
 
 \item{report}{whether to return a detailed report of the run status in each
 directory.}
@@ -53,6 +54,7 @@ condor_download()  # after job has finished
 
 # Alternatively, examine runs on local drive
 condor_dir(local.dir="c:/myruns")
+condor_dir("c:/myruns")
 }
 
 }

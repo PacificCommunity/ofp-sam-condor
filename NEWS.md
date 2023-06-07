@@ -1,5 +1,7 @@
 # condor 1.0.2 (2023-06-06)
 
+* Changed argument order in condor_dir() so 'top.dir' comes first.
+
 * Improved condor_dir() by adding a status category 'aborted' to identify runs
   that were aborted by user. Output from condor_dir() is sorted alphabetically
   by directory names.
