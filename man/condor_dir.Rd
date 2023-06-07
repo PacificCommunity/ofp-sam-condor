@@ -32,6 +32,11 @@ A data frame containing details about each directory, or if
 List Condor run directories, either on submitter machine or on a local drive.
 }
 \details{
+If the user passes \code{top.dir} that resembles a Windows local directory
+(drive letter, colon, forward slash), it is automatically interpreted as a
+\code{local.dir}. In other words, \code{condor_dir("c:/myruns")} and
+\code{condor_dir(local.dir="c:/myruns")} are equivalent.
+
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without
 explicitly specifying the \code{session}.
@@ -53,7 +58,7 @@ condor_dir()
 condor_download()  # after job has finished
 
 # Alternatively, examine runs on local drive
-condor_dir(local.dir="c:/myruns")
+condor_dir(local.dir="myruns")
 condor_dir("c:/myruns")
 }
 

@@ -1,6 +1,8 @@
 # condor 1.0.2 (2023-06-06)
 
-* Changed argument order in condor_dir() so 'top.dir' comes first.
+* Changed argument order in condor_dir() so 'top.dir' comes first. First
+  argument is automatically interpreted as a 'local'dir' if it resembles a
+  Windows local directory, as in condor_dir("c:/myruns").
 
 * Improved condor_dir() by adding a status category 'aborted' to identify runs
   that were aborted by user. Output from condor_dir() is sorted alphabetically

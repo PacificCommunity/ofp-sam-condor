@@ -14,6 +14,11 @@
 #' @param \dots passed to \code{\link{grep}}.
 #'
 #' @details
+#' If the user passes \code{top.dir} that resembles a Windows local directory
+#' (drive letter, colon, forward slash), it is automatically interpreted as a
+#' \code{local.dir}. In other words, \code{condor_dir("c:/myruns")} and
+#' \code{condor_dir(local.dir="c:/myruns")} are equivalent.
+#'
 #' The default value of \code{session = NULL} looks for a \code{session} object
 #' in the user workspace. This allows the user to run Condor functions without
 #' explicitly specifying the \code{session}.
@@ -48,7 +53,7 @@
 #' condor_download()  # after job has finished
 #'
 #' # Alternatively, examine runs on local drive
-#' condor_dir(local.dir="c:/myruns")
+#' condor_dir(local.dir="myruns")
 #' condor_dir("c:/myruns")
 #' }
 #'
@@ -62,6 +67,12 @@ condor_dir <- function(top.dir="condor", local.dir=NULL, pattern="*",
   # Look for user session
   if(is.null(session) && is.null(local.dir))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
+
+  # Interpret top.dir as local.dir if it starts with drive letter, colon, slash
+  if(is.null(local.dir) && isTRUE(grepl("^[A-Za-z]:/", top.dir)))
+    local.dir <- top.dir  # or if it starts with slash slash
+  if(is.null(local.dir) && isTRUE(grepl("^//", top.dir)))
+    local.dir <- top.dir
 
   # Confirm that top.dir or local.dir exists
   if(is.null(local.dir))
