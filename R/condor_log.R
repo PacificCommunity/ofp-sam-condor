@@ -80,6 +80,9 @@ condor_log <- function(run.dir=".", top.dir="condor", local.dir=NULL,
   # Look for file containing the string 'Job submitted'
   if(is.null(local.dir))
   {
+    cmd <- paste("ls", file.path(directory, "*.log"))
+    if(ssh_exec_internal(session, cmd, error=FALSE)$status > 0)
+      stop("no *.log file found in '", directory, "'")
     cmd <- paste("grep -l 'Job submitted'", file.path(directory, "*.log"))
     if(ssh_exec_internal(session, cmd, error=FALSE)$status > 0)
       stop("no *.log file found containing the string 'Job submitted'")
