@@ -5,7 +5,7 @@
 \title{Condor Directories}
 \usage{
 condor_dir(top.dir = "condor", local.dir = NULL, pattern = "*",
-  report = TRUE, session = NULL, ...)
+  report = TRUE, sort = "job.id", session = NULL, ...)
 }
 \arguments{
 \item{top.dir}{top directory on submitter machine that contains Condor run
@@ -19,6 +19,8 @@ The default is to show all directories inside \code{top.dir} or
 
 \item{report}{whether to return a detailed report of the run status in each
 directory.}
+
+\item{sort}{column name or column number used to sort the report data frame.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 

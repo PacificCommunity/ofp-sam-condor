@@ -10,6 +10,7 @@
 #'        \code{local.dir}.
 #' @param report whether to return a detailed report of the run status in each
 #'        directory.
+#' @param sort column name or column number used to sort the report data frame.
 #' @param session optional object of class \code{ssh_connect}.
 #' @param \dots passed to \code{\link{grep}}.
 #'
@@ -62,7 +63,7 @@
 #' @export
 
 condor_dir <- function(top.dir="condor", local.dir=NULL, pattern="*",
-                       report=TRUE, session=NULL, ...)
+                       report=TRUE, sort="job.id", session=NULL, ...)
 {
   # Look for user session
   if(is.null(session) && is.null(local.dir))
@@ -120,6 +121,23 @@ condor_dir <- function(top.dir="condor", local.dir=NULL, pattern="*",
   else
   {
     output <- dirs
+  }
+
+  # Sort data frame and finalize row names
+  if(is.data.frame(output))
+  {
+    # Valid column name
+    if(is.character(sort) && length(sort)==1 && sort %in% names(output))
+    {
+      output <- output[order(output[[sort]]),]
+    }
+    # Valid column number, positive or negative
+    if(is.numeric(sort) && length(sort)==1 && abs(sort) %in% seq_along(output))
+    {
+      sign <- if(sort > 0) 1 else -1
+      output <- output[order(sign * rank(output[[abs(sort)]])),]
+    }
+    rownames(output) <- NULL
   }
 
   output
