@@ -1,4 +1,6 @@
-# condor 1.0.2 (2023-06-14)
+# condor 1.1.0 (2023-06-17)
+
+* Added function condor_rmdir() to remove a directory on the submitter machine.
 
 * Added argument 'sort' in condor_dir().
 

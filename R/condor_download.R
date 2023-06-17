@@ -36,8 +36,8 @@
 #'
 #' @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}},
-#' \code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
-#' interface.
+#' \code{\link{condor_dir}}, \code{condor_download}, and
+#' \code{\link{condor_rmdir}} provide the main Condor interface.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
@@ -51,6 +51,7 @@
 #' condor_q()
 #' condor_dir()
 #' condor_download()  # after job has finished
+#' condor_rmdir()
 #'
 #' # Alternatively, download specific run to specific folder
 #' condor_download("01_this_model", "c:/myruns/01_this_model")
@@ -91,7 +92,7 @@ condor_download <- function(run.dir=NULL, local.dir=".", top.dir="condor",
 
   # Confirm that user is downloading a single remote.dir
   if(length(remote.dir) > 1)
-    stop("only one 'remote.dir' can be downloaded at a time")
+    stop("only one remote directory can be downloaded at a time")
 
   # Confirm that remote.dir exists
   rd.exists <- ssh_exec_internal(session, paste("cd", remote.dir), error=FALSE)

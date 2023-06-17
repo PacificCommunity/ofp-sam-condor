@@ -35,8 +35,9 @@
 #' on submitter machine to launch the Condor job.
 #'
 #' @seealso
-#' \code{condor_submit}, \code{\link{condor_q}}, \code{\link{condor_dir}}, and
-#' \code{\link{condor_download}} provide the main Condor interface.
+#' \code{\link{condor_submit}}, \code{\link{condor_q}},
+#' \code{\link{condor_dir}}, \code{condor_download}, and
+#' \code{\link{condor_rmdir}} provide the main Condor interface.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
@@ -50,6 +51,7 @@
 #' condor_q()
 #' condor_dir()
 #' condor_download()  # after job has finished
+#' condor_rmdir()
 #'
 #' # Alternatively, submit a specific run
 #' condor_submit("c:/myruns/01_this_model")

@@ -63,6 +63,7 @@ condor_submit()
 condor_q()
 condor_dir()
 condor_download()  # after job has finished
+condor_rmdir()
 
 # Alternatively, download specific run to specific folder
 condor_download("01_this_model", "c:/myruns/01_this_model")
@@ -71,8 +72,8 @@ condor_download("01_this_model", "c:/myruns/01_this_model")
 }
 \seealso{
 \code{\link{condor_submit}}, \code{\link{condor_q}},
-\code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
-interface.
+\code{\link{condor_dir}}, \code{condor_download}, and
+\code{\link{condor_rmdir}} provide the main Condor interface.
 
 \code{\link{condor-package}} gives an overview of the package.
 }
