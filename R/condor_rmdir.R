@@ -65,11 +65,8 @@ condor_rmdir <- function(run.dir=NULL, top.dir="condor", session=NULL)
     stop("only one remote directory can be removed at a time")
 
   # Remove remote.dir
-  if(remove)
-  {
-    ssh_exec_wait(session, paste("cd", remote.dir, ";", "cd ..;",
-                                 "rm -rf", basename(remote.dir)))
-  }
+  ssh_exec_wait(session, paste("cd", remote.dir, ";", "cd ..;",
+                               "rm -rf", basename(remote.dir)))
 
   invisible(NULL)
 }
