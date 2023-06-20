@@ -4,13 +4,15 @@
 \alias{condor_rmdir}
 \title{Condor Remove Directory}
 \usage{
-condor_rmdir(run.dir, top.dir = "condor", session = NULL)
+condor_rmdir(run.dir, top.dir = "condor", quiet = FALSE, session = NULL)
 }
 \arguments{
 \item{run.dir}{name of a Condor run directory inside \code{top.dir}.}
 
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
+
+\item{quiet}{whether to suppress messages.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }

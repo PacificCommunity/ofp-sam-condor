@@ -5,6 +5,7 @@
 #' @param run.dir name of a Condor run directory inside \code{top.dir}.
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
+#' @param quiet whether to suppress messages.
 #' @param session optional object of class \code{ssh_connect}.
 #'
 #' @details
@@ -47,7 +48,7 @@
 #'
 #' @export
 
-condor_rmdir <- function(run.dir, top.dir="condor", session=NULL)
+condor_rmdir <- function(run.dir, top.dir="condor", quiet=FALSE, session=NULL)
 {
   # Look for user session
   if(is.null(session))
@@ -75,8 +76,13 @@ condor_rmdir <- function(run.dir, top.dir="condor", session=NULL)
   }
 
   # Remove remote.dir
-  cmd <- paste("cd", top.dir, ";", "rm -rf", paste(run.dir, collapse=" "))
-  ssh_exec_wait(session, cmd)
+  for(i in seq_along(run.dir))
+  {
+    if(!quiet)
+      cat("Removing directory '", run.dir[i], "'\n", sep="")
+    cmd <- paste("cd", top.dir, ";", "rm -rf", run.dir[i])
+    ssh_exec_wait(session, cmd)
+  }
 
   invisible(NULL)
 }
