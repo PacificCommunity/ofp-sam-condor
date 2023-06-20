@@ -58,7 +58,6 @@ condor_submit()
 condor_q()
 condor_dir()
 condor_download()  # after job has finished
-condor_rmdir()
 
 # Alternatively, examine runs on local drive
 condor_dir(local.dir="myruns")
@@ -68,8 +67,11 @@ condor_dir("c:/myruns")
 }
 \seealso{
 \code{\link{condor_submit}}, \code{\link{condor_q}},
-\code{\link{condor_dir}}, \code{condor_download}, and
-\code{\link{condor_rmdir}} provide the main Condor interface.
+\code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
+interface.
+
+\code{\link{condor_rm}} stops Condor jobs and \code{\link{condor_rmdir}}
+removes directories on the submitter machine.
 
 \code{\link{condor_log}} and \code{\link{summary.condor_log}} are called to
 produce the detailed report if \code{report = TRUE}.

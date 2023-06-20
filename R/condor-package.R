@@ -25,8 +25,8 @@
 #' }
 #' \emph{Stop and remove:}
 #' \tabular{ll}{
-#'   \code{\link{condor_rm}}    \tab stop job\cr
-#'   \code{\link{condor_rmdir}} \tab remove directory
+#'   \code{\link{condor_rm}}    \tab stop jobs\cr
+#'   \code{\link{condor_rmdir}} \tab remove directories
 #' }
 #' \emph{Utilities:}
 #' \tabular{ll}{

@@ -2,14 +2,15 @@
 % Please edit documentation in R/condor_rm.R
 \name{condor_rm}
 \alias{condor_rm}
-\title{Condor remove}
+\title{Condor Remove}
 \usage{
-condor_rm(job.id = "", all = FALSE, session = NULL)
+condor_rm(job.id = NULL, all = FALSE, session = NULL)
 }
 \arguments{
-\item{job.id}{the id number of the job would like to remove from the condor.}
+\item{job.id}{a vector of integers or directory names, indicating Condor jobs
+to stop.}
 
-\item{all}{whether to remove all jobs from users in the condor.}
+\item{all}{whether to stop all Condor jobs owned by user.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
@@ -17,13 +18,12 @@ condor_rm(job.id = "", all = FALSE, session = NULL)
 No return value, called for side effects.
 }
 \description{
-Remove a Condor job.
+Stop Condor jobs.
 }
 \details{
-Use this function to remove one or all the jobs on the condor. 
-If wish to remove one job, please specific job.id. 
-If wish to remove all jobs, need to set all=TRUE. 
-If both job.id and all=FALSE. The function will stop and return an error message.
+The default value of \code{session = NULL} looks for a \code{session} object
+in the user workspace. This allows the user to run Condor functions without
+explicitly specifying the \code{session}.
 }
 \examples{
 \dontrun{
@@ -33,24 +33,28 @@ session <- ssh_connect("servername")
 
 condor_submit()
 condor_q()
-condor_rm() # if want to remove a job from condor
 condor_dir()
 condor_download()  # after job has finished
-condor_rmdir()
 
-# Alternatively, list number of jobs being run by each user
-condor_q(all=TRUE, count=TRUE)
+# Stop one or multiple jobs
+condor_rm(123456)                   # stop one job (integer)
+condor_rm(c(123456, 123789))        # stop two jobs (integers)
+condor_rm("01_this")                # stop one job (dirname)
+condor_rm(c("01_this", "02_that"))  # stop two jobs (dirnames)
+condor_rm(all=TRUE)                 # stop all jobs
 }
 
 }
-\author{
-Nan Yao.
-
- @seealso
+\seealso{
 \code{\link{condor_submit}}, \code{\link{condor_q}},
-\code{\link{condor_rm}}, \code{\link{condor_dir}}, 
-\code{condor_download}, and
-\code{\link{condor_rmdir}} provide the main Condor interface.
+\code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
+interface.
+
+\code{\link{condor_rm}} stops Condor jobs and \code{\link{condor_rmdir}}
+removes directories on the submitter machine.
 
 \code{\link{condor-package}} gives an overview of the package.
+}
+\author{
+Nan Yao and Arni Magnusson.
 }

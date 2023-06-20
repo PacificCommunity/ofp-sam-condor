@@ -3,6 +3,7 @@
 * Added function condor_rm() to stop a Condor job.
 
 * Added function condor_rmdir() to remove a directory on the submitter machine.
+  Removed argument 'remove' from condor_download().
 
 * Added argument 'sort' in condor_dir().
 

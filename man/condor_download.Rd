@@ -6,7 +6,7 @@
 \usage{
 condor_download(run.dir = NULL, local.dir = ".", top.dir = "condor",
   create.dir = FALSE, pattern = "End.tar.gz|condor.*(err|log|out)$",
-  overwrite = FALSE, remove = FALSE, untar.end = TRUE, session = NULL)
+  overwrite = FALSE, untar.end = TRUE, session = NULL)
 }
 \arguments{
 \item{run.dir}{name of a Condor run directory inside \code{top.dir}.}
@@ -22,9 +22,6 @@ directories.}
 Passing \code{pattern="*"} will download all files.}
 
 \item{overwrite}{whether to overwrite local files if they already exist.}
-
-\item{remove}{whether to remove remote directory after downloading result
-files.}
 
 \item{untar.end}{whether to extract \code{End.tar.gz} into
 \emph{local.dir} after downloading. (Ignored if a file named
@@ -63,7 +60,6 @@ condor_submit()
 condor_q()
 condor_dir()
 condor_download()  # after job has finished
-condor_rmdir()
 
 # Alternatively, download specific run to specific folder
 condor_download("01_this_model", "c:/myruns/01_this_model")
@@ -72,8 +68,11 @@ condor_download("01_this_model", "c:/myruns/01_this_model")
 }
 \seealso{
 \code{\link{condor_submit}}, \code{\link{condor_q}},
-\code{\link{condor_dir}}, \code{condor_download}, and
-\code{\link{condor_rmdir}} provide the main Condor interface.
+\code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
+interface.
+
+\code{\link{condor_rm}} stops Condor jobs and \code{\link{condor_rmdir}}
+removes directories on the submitter machine.
 
 \code{\link{condor-package}} gives an overview of the package.
 }

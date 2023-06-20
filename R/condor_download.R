@@ -10,8 +10,6 @@
 #' @param pattern regular expression identifying which result files to download.
 #'        Passing \code{pattern="*"} will download all files.
 #' @param overwrite whether to overwrite local files if they already exist.
-#' @param remove whether to remove remote directory after downloading result
-#'        files.
 #' @param untar.end whether to extract \code{End.tar.gz} into
 #'        \emph{local.dir} after downloading. (Ignored if a file named
 #'        \file{End.tar.gz} was not downloaded.)
@@ -38,8 +36,11 @@
 #'
 #' @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}},
-#' \code{\link{condor_dir}}, \code{condor_download}, and
-#' \code{\link{condor_rmdir}} provide the main Condor interface.
+#' \code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
+#' interface.
+#'
+#' \code{\link{condor_rm}} stops Condor jobs and \code{\link{condor_rmdir}}
+#' removes directories on the submitter machine.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
@@ -53,7 +54,6 @@
 #' condor_q()
 #' condor_dir()
 #' condor_download()  # after job has finished
-#' condor_rmdir()
 #'
 #' # Alternatively, download specific run to specific folder
 #' condor_download("01_this_model", "c:/myruns/01_this_model")
@@ -67,8 +67,7 @@
 condor_download <- function(run.dir=NULL, local.dir=".", top.dir="condor",
                             create.dir=FALSE,
                             pattern="End.tar.gz|condor.*(err|log|out)$",
-                            overwrite=FALSE, remove=FALSE, untar.end=TRUE,
-                            session=NULL)
+                            overwrite=FALSE, untar.end=TRUE, session=NULL)
 {
   # Expand dot so basename() works
   if(local.dir == ".")
@@ -120,13 +119,6 @@ condor_download <- function(run.dir=NULL, local.dir=".", top.dir="condor",
          to=local.dir)
   if(untar.end && file.exists(file.path(local.dir, "End.tar.gz")))
     untar(file.path(local.dir, "End.tar.gz"), exdir=local.dir)
-
-  # Remove remote.dir
-  if(remove)
-  {
-    ssh_exec_wait(session, paste("cd", remote.dir, ";", "cd ..;",
-                                 "rm -rf", basename(remote.dir)))
-  }
 
   invisible(NULL)
 }

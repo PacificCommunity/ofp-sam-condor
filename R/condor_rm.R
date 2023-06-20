@@ -1,26 +1,28 @@
-
-#' Condor remove
-#' 
-#' Remove a Condor job.
-#' @param job.id the id number of the job would like to remove from the condor.
-#' @param all whether to remove all jobs from users in the condor.
-#' @param session optional object of class \code{ssh_connect}.
-#' 
-#' @details 
-#' Use this function to remove one or all the jobs on the condor. 
-#' If wish to remove one job, please specific job.id. 
-#' If wish to remove all jobs, need to set all=TRUE. 
-#' If both job.id and all=FALSE. The function will stop and return an error message. 
-#' 
-#' @return No return value, called for side effects.
-#' 
-#' @author Nan Yao.
+#' Condor Remove
 #'
-#'  @seealso
+#' Stop Condor jobs.
+#'
+#' @param job.id a vector of integers or directory names, indicating Condor jobs
+#'        to stop.
+#' @param all whether to stop all Condor jobs owned by user.
+#' @param session optional object of class \code{ssh_connect}.
+#'
+#' @details
+#' The default value of \code{session = NULL} looks for a \code{session} object
+#' in the user workspace. This allows the user to run Condor functions without
+#' explicitly specifying the \code{session}.
+#'
+#' @return No return value, called for side effects.
+#'
+#' @author Nan Yao and Arni Magnusson.
+#'
+#' @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}},
-#' \code{\link{condor_rm}}, \code{\link{condor_dir}}, 
-#' \code{condor_download}, and
-#' \code{\link{condor_rmdir}} provide the main Condor interface.
+#' \code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
+#' interface.
+#'
+#' \code{\link{condor_rm}} stops Condor jobs and \code{\link{condor_rmdir}}
+#' removes directories on the submitter machine.
 #'
 #' \code{\link{condor-package}} gives an overview of the package.
 #'
@@ -32,36 +34,49 @@
 #'
 #' condor_submit()
 #' condor_q()
-#' condor_rm() # if want to remove a job from condor
 #' condor_dir()
 #' condor_download()  # after job has finished
-#' condor_rmdir()
 #'
-#' # Alternatively, list number of jobs being run by each user
-#' condor_q(all=TRUE, count=TRUE)
+#' # Stop one or multiple jobs
+#' condor_rm(123456)                   # stop one job (integer)
+#' condor_rm(c(123456, 123789))        # stop two jobs (integers)
+#' condor_rm("01_this")                # stop one job (dirname)
+#' condor_rm(c("01_this", "02_that"))  # stop two jobs (dirnames)
+#' condor_rm(all=TRUE)                 # stop all jobs
 #' }
 #'
 #' @importFrom ssh ssh_exec_wait
+#' @importFrom utils type.convert
 #'
 #' @export
-condor_rm <- function(job.id="",all=FALSE,session=NULL)
+
+condor_rm <- function(job.id=NULL, all=FALSE, session=NULL)
 {
   # Look for user session
   if(is.null(session))
     session <- get("session", pos=.GlobalEnv, inherits=FALSE)
-  
-  # Prepare command
-  arg <- ""
-  if(all)
-    arg <- paste(arg, "-all")
-  if(job.id!="")
-    arg <- job.id
-  if(job.id==""&all==FALSE)
-    stop("must specific either a job.id or select all==TRUE if you want to remove all jobs! ")
-  
-  cmd <- paste("condor_rm", arg)
-  ## show rm result 
-  table(ssh_exec_stdout(cmd))
-  
-}
 
+  # Convert job.id to integer, unless all=TRUE
+  if(!all)
+  {
+    if(is.null(job.id))
+      stop("user must pass 'job.id' or 'all=TRUE'")
+    job.id <- type.convert(job.id, as.is=TRUE)  # "123456" -> 123456
+    if(is.character(job.id))
+    {
+      for(i in seq_along(job.id))
+      {
+        job.id[i] <- gsub("\\^||\\$", "", job.id[i])  # clean existing ^ and $
+        job.id[i] <- paste0("^", job.id[i], "$")
+        job.id[i] <- condor_dir(pattern=job.id[i])$job.id
+      }
+      job.id <- type.convert(job.id, as.is=TRUE)
+    }
+  }
+
+  # Stop job(s)
+  cmd <- paste("condor_rm", if(all) "-all" else job.id)
+  invisible(sapply(cmd, ssh_exec_wait, session=session))
+
+  invisible(NULL)
+}
