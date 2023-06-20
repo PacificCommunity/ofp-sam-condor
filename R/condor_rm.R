@@ -4,7 +4,7 @@
 #'
 #' @param job.id a vector of integers or directory names, indicating Condor jobs
 #'        to stop.
-#' @param all whether to stop all Condor jobs owned by user.\
+#' @param all whether to stop all Condor jobs owned by user.
 #' @param top.dir top directory on submitter machine that contains Condor run
 #'        directories.
 #' @param session optional object of class \code{ssh_connect}.

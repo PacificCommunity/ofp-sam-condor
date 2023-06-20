@@ -11,6 +11,8 @@ condor_rm(job.id = NULL, all = FALSE, top.dir = "condor",
 \item{job.id}{a vector of integers or directory names, indicating Condor jobs
 to stop.}
 
+\item{all}{whether to stop all Condor jobs owned by user.}
+
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
 
