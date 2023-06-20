@@ -114,6 +114,10 @@ condor_dir <- function(top.dir="condor", local.dir=NULL, pattern="*",
     output <- data.frame(dir=character(), job.id=integer(), status=character(),
                          submit.time=character(), runtime=character(),
                          disk=numeric(), memory=numeric())
+    if(is.character(sort) && length(sort)==1 && !(sort %in% names(output)))
+      stop("column '", sort, "' not found in report data frame")
+    if(is.numeric(sort) && length(sort) == 1 && !(abs(sort) %in% seq_along(output)))
+      stop("column ", abs(sort), " does not exist in report data frame")
     for(i in seq_along(dirs))
     {
       output[i,1] <- dirs[i]
@@ -135,15 +139,11 @@ condor_dir <- function(top.dir="condor", local.dir=NULL, pattern="*",
     # Valid column name
     if(is.character(sort) && length(sort) == 1)
     {
-      if(!(sort %in% names(output)))
-        stop("column '", sort, "' not found in report data frame")
       output <- output[order(output[[sort]]),]
     }
     # Valid column number, positive or negative
     if(is.numeric(sort) && length(sort) == 1)
     {
-      if(!(abs(sort) %in% seq_along(output)))
-        stop("column ", abs(sort), " does not exist in report data frame")
       sign <- if(sort > 0) 1 else -1
       output <- output[order(sign * rank(output[[abs(sort)]])),]
     }
