@@ -4,13 +4,15 @@
 \alias{condor_rm}
 \title{Condor Remove}
 \usage{
-condor_rm(job.id = NULL, all = FALSE, session = NULL)
+condor_rm(job.id = NULL, all = FALSE, top.dir = "condor",
+  session = NULL)
 }
 \arguments{
 \item{job.id}{a vector of integers or directory names, indicating Condor jobs
 to stop.}
 
-\item{all}{whether to stop all Condor jobs owned by user.}
+\item{top.dir}{top directory on submitter machine that contains Condor run
+directories.}
 
 \item{session}{optional object of class \code{ssh_connect}.}
 }
@@ -21,6 +23,11 @@ No return value, called for side effects.
 Stop Condor jobs.
 }
 \details{
+The \code{top.dir} argument only has an effect when \code{job.id} is a vector
+of directory names. For example, \code{condor_rm("01_this")} will stop the
+Condor job corresponding to directory \code{condor/01_this} on the submitter
+machine.
+
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without
 explicitly specifying the \code{session}.
