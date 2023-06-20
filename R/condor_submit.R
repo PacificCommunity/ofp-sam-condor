@@ -34,6 +34,8 @@
 #' to submitter machine, and (2) execute shell command \command{condor_submit}
 #' on submitter machine to launch the Condor job.
 #'
+#' @author Arni Magnusson.
+#'
 #' @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}},
 #' \code{\link{condor_dir}}, \code{condor_download}, and

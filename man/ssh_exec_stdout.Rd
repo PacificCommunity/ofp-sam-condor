@@ -43,3 +43,6 @@ standard output into a raw vector.
 
 \code{\link{condor-package}} gives an overview of the package.
 }
+\author{
+Arni Magnusson.
+}

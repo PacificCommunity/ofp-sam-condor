@@ -15,14 +15,6 @@ condor_rm(job.id = "", all = FALSE, session = NULL)
 }
 \value{
 No return value, called for side effects.
-
- @seealso
-\code{\link{condor_submit}}, \code{\link{condor_q}},
-\code{\link{condor_rm}}, \code{\link{condor_dir}}, 
-\code{condor_download}, and
-\code{\link{condor_rmdir}} provide the main Condor interface.
-
-\code{\link{condor-package}} gives an overview of the package.
 }
 \description{
 Remove a Condor job.
@@ -50,4 +42,15 @@ condor_rmdir()
 condor_q(all=TRUE, count=TRUE)
 }
 
+}
+\author{
+Nan Yao.
+
+ @seealso
+\code{\link{condor_submit}}, \code{\link{condor_q}},
+\code{\link{condor_rm}}, \code{\link{condor_dir}}, 
+\code{condor_download}, and
+\code{\link{condor_rmdir}} provide the main Condor interface.
+
+\code{\link{condor-package}} gives an overview of the package.
 }

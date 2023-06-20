@@ -13,6 +13,8 @@
 #'
 #' @return A \code{"character"} vector containing the standard output.
 #'
+#' @author Arni Magnusson.
+#'
 #' @seealso
 #' \code{\link[ssh]{ssh_exec_wait}} runs a command or script and shows the
 #' standard output in the R console, while returning the exit status.

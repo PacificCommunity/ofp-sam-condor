@@ -15,6 +15,8 @@
 #' \item{disk}{disk space used by job (MB).}
 #' \item{memory}{memory used by job (MB).}
 #'
+#' @author Arni Magnusson.
+#'
 #' @seealso
 #' \code{\link{condor_log}} shows Condor log file.
 #'

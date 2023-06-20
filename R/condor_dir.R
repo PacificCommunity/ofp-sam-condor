@@ -33,6 +33,8 @@
 #' substantial time (one SSH execution per run directory). To quickly return a
 #' vector of directory names, pass \code{report = FALSE}.
 #'
+#' @author Arni Magnusson.
+#'
 #' @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}},
 #' \code{\link{condor_dir}}, \code{condor_download}, and

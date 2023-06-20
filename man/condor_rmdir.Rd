@@ -56,3 +56,6 @@ condor_rmdir("test_runs", top.dir=".")  # remove ~/test_runs
 
 \code{\link{condor-package}} gives an overview of the package.
 }
+\author{
+Arni Magnusson.
+}

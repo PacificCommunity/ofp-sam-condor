@@ -76,3 +76,6 @@ produce the detailed report if \code{report = TRUE}.
 
 \code{\link{condor-package}} gives an overview of the package.
 }
+\author{
+Arni Magnusson.
+}

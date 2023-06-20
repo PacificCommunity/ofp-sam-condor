@@ -34,6 +34,8 @@
 #'
 #' @return No return value, called for side effects.
 #'
+#' @author Arni Magnusson.
+#'
 #' @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}},
 #' \code{\link{condor_dir}}, \code{condor_download}, and

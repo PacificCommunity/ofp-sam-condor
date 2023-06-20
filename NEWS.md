@@ -1,4 +1,6 @@
-# condor 1.1.0 (2023-06-17)
+# condor 2.0.0 (2023-06-20)
+
+* Added function condor_rm() to stop a Condor job.
 
 * Added function condor_rmdir() to remove a directory on the submitter machine.
 

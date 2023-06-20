@@ -50,3 +50,6 @@ condor_q(all=TRUE, count=TRUE)
 
 \code{\link{condor-package}} gives an overview of the package.
 }
+\author{
+Arni Magnusson.
+}

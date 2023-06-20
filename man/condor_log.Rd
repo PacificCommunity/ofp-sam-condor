@@ -57,3 +57,6 @@ summary(condor_log(local.dir="c:/myruns/01_this_model"))
 
 \code{\link{condor-package}} gives an overview of the package.
 }
+\author{
+Arni Magnusson.
+}

@@ -21,6 +21,8 @@
 #' The \code{condor_log} class is simply a \code{"character"} vector with a
 #' \code{print.condor_log} method.
 #'
+#' @author Arni Magnusson.
+#'
 #' @seealso
 #' \code{\link{summary.condor_log}} shows Condor log file summary.
 #'

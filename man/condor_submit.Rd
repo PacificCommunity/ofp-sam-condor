@@ -72,3 +72,6 @@ condor_submit("c:/myruns/01_this_model")
 
 \code{\link{condor-package}} gives an overview of the package.
 }
+\author{
+Arni Magnusson.
+}

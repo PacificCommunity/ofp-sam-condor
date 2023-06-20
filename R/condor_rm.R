@@ -14,6 +14,8 @@
 #' 
 #' @return No return value, called for side effects.
 #' 
+#' @author Nan Yao.
+#'
 #'  @seealso
 #' \code{\link{condor_submit}}, \code{\link{condor_q}},
 #' \code{\link{condor_rm}}, \code{\link{condor_dir}}, 
