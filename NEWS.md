@@ -1,4 +1,4 @@
-# condor 2.0.0 (2023-06-20)
+# condor 2.0.0 (2023-06-21)
 
 * Added function condor_rm() to stop a Condor job.
 
