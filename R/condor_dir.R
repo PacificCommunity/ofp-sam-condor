@@ -71,15 +71,16 @@
 condor_dir <- function(top.dir="condor", local.dir=NULL, pattern="*",
                        report=TRUE, sort="job.id", session=NULL, ...)
 {
-  # Look for user session
-  if(is.null(session) && is.null(local.dir))
-    session <- get("session", pos=.GlobalEnv, inherits=FALSE)
-
   # Interpret top.dir as local.dir if it starts with drive letter, colon, slash
   if(is.null(local.dir) && isTRUE(grepl("^[A-Za-z]:/", top.dir)))
     local.dir <- top.dir  # or if it starts with slash slash
   if(is.null(local.dir) && isTRUE(grepl("^//", top.dir)))
     local.dir <- top.dir
+
+  # Look for user session
+  # We don't want to check is.null(local.dir) until after local.dir <- top.dir
+  if(is.null(session) && is.null(local.dir))
+    session <- get("session", pos=.GlobalEnv, inherits=FALSE)
 
   # Confirm that top.dir or local.dir exists
   if(is.null(local.dir))
