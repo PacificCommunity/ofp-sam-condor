@@ -4,6 +4,7 @@
 #'
 #' @param all whether to list jobs from all users.
 #' @param count whether to only show the number of jobs.
+#' @param global whether to list jobs submitted from all submitter machines.
 #' @param user username to list jobs submitted by a given user.
 #' @param session optional object of class \code{ssh_connect}.
 #'
@@ -45,7 +46,8 @@
 #'
 #' @export
 
-condor_q <- function(all=FALSE, count=FALSE, user="", session=NULL)
+condor_q <- function(all=FALSE, count=FALSE, global=FALSE, user="",
+                     session=NULL)
 {
   # Look for user session
   if(is.null(session))
@@ -57,6 +59,8 @@ condor_q <- function(all=FALSE, count=FALSE, user="", session=NULL)
     arg <- paste(arg, "-allusers")
   if(count)
     arg <- paste(arg, "-format '%s\n' Owner")
+  if(global)
+    arg <- paste(arg, "-global")
   if(user != "")
     arg <- paste(arg, "-submitter", user)
   cmd <- paste("condor_q", arg)

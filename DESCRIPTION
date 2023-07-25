@@ -1,6 +1,6 @@
 Package: condor
-Version: 2.0.0
-Date: 2023-06-21
+Version: 2.0.1
+Date: 2023-07-25
 Title: Interact with 'Condor' from R via SSH
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="thisisarni@gmail.com"),
              person("Nan", "Yao", role="aut"),

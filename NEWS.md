@@ -1,3 +1,10 @@
+# condor 2.0.1 (2023-07-25)
+
+* Added argument 'global' to condor_q().
+
+
+
+
 # condor 2.0.0 (2023-06-21)
 
 * Added function condor_rm() to stop a Condor job.
@@ -5,7 +12,7 @@
 * Added function condor_rmdir() to remove a directory on the submitter machine.
   Removed argument 'remove' from condor_download().
 
-* Added argument 'sort' in condor_dir().
+* Added argument 'sort' to condor_dir().
 
 * Changed argument order in condor_dir() so 'top.dir' comes first. First
   argument is automatically interpreted as a 'local'dir' if it resembles a

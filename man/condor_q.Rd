@@ -4,12 +4,15 @@
 \alias{condor_q}
 \title{Condor Queue}
 \usage{
-condor_q(all = FALSE, count = FALSE, user = "", session = NULL)
+condor_q(all = FALSE, count = FALSE, global = FALSE, user = "",
+  session = NULL)
 }
 \arguments{
 \item{all}{whether to list jobs from all users.}
 
 \item{count}{whether to only show the number of jobs.}
+
+\item{global}{whether to list jobs submitted from all submitter machines.}
 
 \item{user}{username to list jobs submitted by a given user.}
 
