@@ -23,7 +23,8 @@
 #' the current user from the current submitter machine.
 #'
 #' The \code{condor_qq} alternative is the same function but with different
-#' default argument values, convenient for a \emph{quick} overview of the queue.
+#' default argument values, convenient for a \emph{quick} overview of the
+#' \emph{queue}.
 #'
 #' @author Arni Magnusson.
 #'
