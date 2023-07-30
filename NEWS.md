@@ -1,6 +1,11 @@
-# condor 2.0.1 (2023-07-25)
+# condor 2.1.0 (2023-07-28)
+
+* Add function condor_qq() to produce a quick overview of the queue.
 
 * Added argument 'global' to condor_q().
+
+* Improved condor_q() so it captures and returns the screen output from the
+  condor_q shell command.
 
 
 
