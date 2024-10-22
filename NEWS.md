@@ -1,3 +1,8 @@
+# condor 2.1.1 (2024-10-23)
+
+
+
+
 # condor 2.1.0 (2023-08-28)
 
 * Added function condor_qq() to produce a quick overview of the queue.
