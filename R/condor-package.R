@@ -1,5 +1,3 @@
-#' @docType package
-#'
 #' @name condor-package
 #'
 #' @aliases condor
@@ -31,8 +29,10 @@
 #' \emph{Utilities:}
 #' \tabular{ll}{
 #'   \code{\link{condor_log}}         \tab show log file\cr
+#'   \code{\link{dos2unix}}           \tab convert line endings\cr
 #'   \code{\link{summary.condor_log}} \tab show log file summary\cr
-#'   \code{\link{ssh_exec_stdout}}    \tab execute command
+#'   \code{\link{ssh_exec_stdout}}    \tab execute command\cr
+#'   \code{\link{unix2dos}}           \tab convert line endings
 #' }
 #'
 #' @author
@@ -48,4 +48,4 @@
 #' \pkg{condor} uses the \pkg{ssh} package to connect to the Condor submitter
 #' machine.
 
-NA
+"_PACKAGE"

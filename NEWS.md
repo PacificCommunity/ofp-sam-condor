@@ -1,4 +1,7 @@
-# condor 2.1.1 (2024-10-23)
+# condor 2.2.0 (2024-10-23)
+
+* Added functions dos2unix() and unix2dos() to convert line endings in a text
+  file.
 
 
 
