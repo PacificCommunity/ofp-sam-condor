@@ -5,18 +5,27 @@
 \alias{unix2dos}
 \title{Convert Line Endings}
 \usage{
-dos2unix(file)
+dos2unix(file, force = FALSE)
 
-unix2dos(file)
+unix2dos(file, force = FALSE)
 }
 \arguments{
 \item{file}{a filename.}
+
+\item{force}{whether to proceed with the conversion when the file is not a
+standard text file.}
 }
 \value{
 No return value, called for side effects.
 }
 \description{
 Convert line endings in a text file between Dos (CRLF) and Unix (LF) format.
+}
+\details{
+The default value of \code{force = FALSE} is a safety feature that can avoid
+corrupting files that are not standard text files, such as binary files. A
+standard text file is one that can be read using \code{\link{readLines}}
+without producing warnings.
 }
 \examples{
 \dontrun{
