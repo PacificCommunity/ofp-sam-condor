@@ -43,6 +43,9 @@ file.remove(file)
 
 }
 \seealso{
+\code{\link{condor_submit}} calls \code{dos2unix} to convert the line endings
+of shell scripts.
+
 \code{\link{condor-package}} gives an overview of the package.
 }
 \author{
