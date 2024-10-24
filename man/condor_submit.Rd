@@ -5,7 +5,7 @@
 \title{Condor Submit}
 \usage{
 condor_submit(local.dir = ".", run.dir = NULL, top.dir = "condor",
-  exclude = "condor_mfcl|tar.gz|End", session = NULL)
+  unix = "\\\\.sh$", exclude = "condor_mfcl|tar.gz|End", session = NULL)
 }
 \arguments{
 \item{local.dir}{local directory containing a Condor \code{*.sub} file and
@@ -16,6 +16,9 @@ any other files necessary to run the job.}
 
 \item{top.dir}{top directory on submitter machine that contains Condor run
 directories.}
+
+\item{unix}{pattern identifying files in \code{local.dir} that should have
+Unix line endings.}
 
 \item{exclude}{pattern identifying files in \code{local.dir} that should not
 be submitted to Condor.}
@@ -38,6 +41,9 @@ It can be practical to organize Condor runs inside the default
 \code{top.dir = "condor"} directory, to keep Condor runs separate from other
 directories inside the user home. To organize Condor runs directly in the
 home folder on the submitter machine, pass \code{top.dir = ""}.
+
+The default value of \code{unix = "\\.sh$"} ensures that shell scripts with a
+\file{.sh} file extension have Unix line endings.
 
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without
@@ -71,6 +77,7 @@ condor_submit("c:/myruns/01_this_model")
 \code{\link{condor_rm}} stops Condor jobs and \code{\link{condor_rmdir}}
 removes directories on the submitter machine.
 
+\code{\link{dos2unix}} converts line endings.
 
 \code{\link{condor-package}} gives an overview of the package.
 }

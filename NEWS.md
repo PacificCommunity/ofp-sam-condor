@@ -3,6 +3,8 @@
 * Added functions dos2unix() and unix2dos() to convert line endings in a text
   file.
 
+* Added argument 'unix' to condor_submit().
+
 
 
 
