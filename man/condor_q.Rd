@@ -60,9 +60,8 @@ condor_q(all=TRUE, count=TRUE)
 
 }
 \seealso{
-\code{\link{condor_submit}}, \code{\link{condor_q}},
-\code{\link{condor_dir}}, and \code{condor_download} provide the main Condor
-interface.
+\code{\link{condor_submit}}, \code{condor_q}, \code{\link{condor_dir}}, and
+\code{\link{condor_download}} provide the main Condor interface.
 
 \code{\link{condor_rm}} stops Condor jobs and \code{\link{condor_rmdir}}
 removes directories on the submitter machine.
