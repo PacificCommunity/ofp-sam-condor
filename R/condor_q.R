@@ -84,7 +84,7 @@ condor_q <- function(all=FALSE, count=FALSE, global=FALSE, user="",
   else
   {
     out <- capture.output(ssh_exec_wait(session, cmd))
-    class(out) <- "condor_log"
+    class(out) <- "condor_q"
   }
   out
 }
@@ -96,4 +96,20 @@ condor_q <- function(all=FALSE, count=FALSE, global=FALSE, user="",
 condor_qq <- function(all=TRUE, count=TRUE, global=TRUE, user="", session=NULL)
 {
   condor_q(all=all, count=count, global=global, user=user, session=session)
+}
+
+#' @rdname condor-internal
+#'
+#' @export
+#' @export print.condor_q
+
+print.condor_q <- function(x, ...)
+{
+  writeLines(x, ...)
+  invisible(x)
+}
+
+summary.condor_q <- function(object, ...)
+{
+  NULL
 }
