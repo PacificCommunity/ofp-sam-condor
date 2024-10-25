@@ -43,7 +43,8 @@ directories inside the user home. To organize Condor runs directly in the
 home folder on the submitter machine, pass \code{top.dir = ""}.
 
 The default value of \code{unix = "\\.sh$"} ensures that shell scripts with a
-\file{.sh} file extension have Unix line endings.
+\file{.sh} file extension have Unix line endings. Pass \code{FALSE} to
+disable conversion of line endings.
 
 The default value of \code{session = NULL} looks for a \code{session} object
 in the user workspace. This allows the user to run Condor functions without

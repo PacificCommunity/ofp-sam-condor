@@ -26,7 +26,8 @@
 #' home folder on the submitter machine, pass \code{top.dir = ""}.
 #'
 #' The default value of \code{unix = "\\.sh$"} ensures that shell scripts with a
-#' \file{.sh} file extension have Unix line endings.
+#' \file{.sh} file extension have Unix line endings. Pass \code{FALSE} to
+#' disable conversion of line endings.
 #'
 #' The default value of \code{session = NULL} looks for a \code{session} object
 #' in the user workspace. This allows the user to run Condor functions without
@@ -103,8 +104,11 @@ condor_submit <- function(local.dir=".", run.dir=NULL, top.dir="condor",
     stop("'", remote.dir, "' already exists on Condor submitter")
 
   # Convert line endings
-  unix.files <- dir(local.dir, pattern=unix, full.names=TRUE)
-  sapply(unix.files, dos2unix)
+  if(is.character(unix) && nchar(unix) > 0)
+  {
+    unix.files <- dir(local.dir, pattern=unix, full.names=TRUE)
+    sapply(unix.files, dos2unix)
+  }
 
   # Create Start.tar.gz (excluding existing tar.gz files) inside tempdir()
   files <- dir(local.dir, full.names=TRUE)
