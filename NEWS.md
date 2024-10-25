@@ -9,6 +9,10 @@
 
 * Added argument 'unix' to condor_submit().
 
+* Added a simple class 'condor_q' for the output of condor_q() with a print()
+  method. This helps distinguish it from the 'condor_log' class, which has
+  print() and summary() methods.
+
 
 
 
