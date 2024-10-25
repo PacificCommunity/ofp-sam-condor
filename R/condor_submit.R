@@ -104,7 +104,7 @@ condor_submit <- function(local.dir=".", run.dir=NULL, top.dir="condor",
 
   # Convert line endings
   unix.files <- dir(local.dir, pattern=unix, full.names=TRUE)
-  sapply(unix.files, unix2dos)
+  sapply(unix.files, dos2unix)
 
   # Create Start.tar.gz (excluding existing tar.gz files) inside tempdir()
   files <- dir(local.dir, full.names=TRUE)
