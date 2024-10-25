@@ -84,6 +84,7 @@ condor_q <- function(all=FALSE, count=FALSE, global=FALSE, user="",
   else
   {
     out <- capture.output(ssh_exec_wait(session, cmd))
+    out <- out[out != "[1] 0"]
     class(out) <- "condor_q"
   }
   out
