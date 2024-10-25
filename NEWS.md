@@ -1,4 +1,8 @@
-# condor 2.2.0 (2024-10-23)
+# condor 3.0.0 (2024-10-25)
+
+* Changed the default behavior of condor_submit() to ensure that shell scripts
+  with a '.sh' file extension have Unix line endings. Pass unix=FALSE to disable
+  conversion of line endings.
 
 * Added functions dos2unix() and unix2dos() to convert line endings in a text
   file.
