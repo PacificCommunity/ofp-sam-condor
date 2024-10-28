@@ -74,6 +74,7 @@ summary.condor_log <- function(object, ...)
     runtime <- NA_character_
 
   disk <- grep("Disk \\(KB\\)", object, value=TRUE)
+  disk <- tail(disk, 1)  # final disk usage, if many values are reported
   disk <- gsub(".*: *([0-9]*) .*", "\\1", disk)
   disk <- type.convert(disk, as.is=TRUE)
   disk <- round(disk / 1024, ...)
@@ -81,6 +82,7 @@ summary.condor_log <- function(object, ...)
     disk <- NA_integer_
 
   memory <- grep("Memory \\(MB\\)", object, value=TRUE)
+  memory <- tail(memory, 1)  # final memory usage, if many values are reported
   memory <- gsub(".*: *([0-9]*) .*", "\\1", memory)
   memory <- type.convert(memory, as.is=TRUE)
   memory <- round(memory, ...)
