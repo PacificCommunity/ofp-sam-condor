@@ -4,11 +4,14 @@
 \alias{condor-internal}
 \alias{print.condor_log}
 \alias{print.condor_q}
+\alias{summary.condor_q}
 \title{Various Condor Helper Functions}
 \usage{
 \method{print}{condor_log}(x, ...)
 
 \method{print}{condor_q}(x, ...)
+
+\method{summary}{condor_q}(object, ...)
 }
 \value{
 No return value, called for side effects.

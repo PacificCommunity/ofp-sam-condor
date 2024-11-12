@@ -110,7 +110,7 @@ print.condor_q <- function(x, ...)
   invisible(x)
 }
 
-#' rdname condor-internal
+#' @rdname condor-internal
 #'
 #' @export
 #' @export summary.condor_q
