@@ -1,4 +1,4 @@
-# condor 3.0.0 (2024-10-25)
+# condor 3.0.0 (2024-11-12)
 
 * Changed the default behavior of condor_submit() to ensure that shell scripts
   with a '.sh' file extension have Unix line endings. Pass unix=FALSE to disable
@@ -12,6 +12,9 @@
 * Added a simple class 'condor_q' for the output of condor_q() with a print()
   method. This helps distinguish it from the 'condor_log' class, which has
   print() and summary() methods.
+
+* Improved condor_dir() output when log files include multiple values of disk
+  and memory usage.
 
 
 
