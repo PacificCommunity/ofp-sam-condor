@@ -60,7 +60,7 @@ condor_rmdir <- function(run.dir, top.dir="condor", quiet=FALSE, session=NULL)
   for(i in seq_along(run.dir))
   {
     if(run.dir[i] == "")
-      stop("run.dir = \"\"", run.dir[i], " is not a valid directory name")
+      stop("run.dir = \"\" is not a valid directory name")
     if(grepl("\\*", run.dir[i]))
       stop("run.dir = '", run.dir[i], "' is not a valid directory name")
   }
