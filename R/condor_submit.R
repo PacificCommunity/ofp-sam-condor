@@ -23,7 +23,7 @@
 #' It can be practical to organize Condor runs inside the default
 #' \code{top.dir = "condor"} directory, to keep Condor runs separate from other
 #' directories inside the user home. To organize Condor runs directly in the
-#' home folder on the submitter machine, pass \code{top.dir = ""}.
+#' home folder on the submitter machine, pass \code{top.dir = "~"}.
 #'
 #' The default value of \code{unix = "\\.sh$"} ensures that shell scripts with a
 #' \file{.sh} file extension have Unix line endings. Pass \code{FALSE} to
